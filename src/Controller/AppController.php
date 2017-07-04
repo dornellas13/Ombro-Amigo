@@ -66,4 +66,16 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
+
+    public function beforeFilter(Event $event)
+    {
+         parent::beforeFilter($event);
+
+         // Carregar tabelas a serem utilizadas com o 'Elastic Search'
+         // Carrega o Type usando o provedor 'Elastic'
+         $this->loadModel('Categorias', 'Elastic');
+         //$this->loadModel('Solicitacoes','Elastic');
+         //$this->loadModel('Doacoes','Elastic');
+
+    }
 }

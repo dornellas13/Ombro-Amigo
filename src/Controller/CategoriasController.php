@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
 /**
  * Categorias Controller
  *
@@ -21,7 +20,6 @@ class CategoriasController extends AppController
     public function index()
     {
         $categorias = $this->paginate($this->Categorias);
-
         $this->set(compact('categorias'));
         $this->set('_serialize', ['categorias']);
     }
@@ -35,10 +33,7 @@ class CategoriasController extends AppController
      */
     public function view($id = null)
     {
-        $categoria = $this->Categorias->get($id, [
-            'contain' => ['Produtos']
-        ]);
-
+        $categoria = $this->Categorias->get($id);
         $this->set('categoria', $categoria);
         $this->set('_serialize', ['categoria']);
     }
@@ -51,17 +46,15 @@ class CategoriasController extends AppController
     public function add()
     {
         $categoria = $this->Categorias->newEntity();
-        if ($this->request->is('post')) {
-            $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
-            if ($this->Categorias->save($categoria)) {
-                $this->Flash->success(__('The categoria has been saved.'));
+          if ($this->request->is('post')) {
+              $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The categoria could not be saved. Please, try again.'));
-        }
+              if ($this->Categorias->save($categoria)) {
+                  $this->Flash->success('Documento salvo com sucesso!');
+                   return $this->redirect(['action' => 'index']);
+              }
+          }
         $this->set(compact('categoria'));
-        $this->set('_serialize', ['categoria']);
     }
 
     /**

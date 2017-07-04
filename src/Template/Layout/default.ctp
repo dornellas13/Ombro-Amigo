@@ -24,11 +24,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+
+    <!-- Carregando materialize -->
+
+        <?= $this->Html->css('materialize.css') ?>
+        <?= $this->Html->script('materialize.js') ?>
+
+    <!-- Fim carregamento materialize -->
+
+    <!-- 
+        Retirado css do cakephp
+        <?= $this->Html->css('base.css') ?>
+        <?= $this->Html->css('cake.css') ?>
+    -->
+
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

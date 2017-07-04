@@ -221,5 +221,13 @@ if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
-/*CakePHP Acl Plugin*/
+/*
+    Espaço reservado para chamada de plugins utilizado no sistema.
+*/
+
+/* CakePHP Acl Plugin */
 Plugin::load('Acl', ['bootstrap' => true]);
+
+/* Elastic Search(Apache Lucene)*/
+Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
+
