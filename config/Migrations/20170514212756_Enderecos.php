@@ -23,6 +23,11 @@ class Enderecos extends AbstractMigration
                 'limit' => 255,
                 'null' => false,
             ])
+            -> addColumn('cep','string',[
+                'default' => 'null',
+                'limit' => 255,
+                'null' => false
+            ])
             ->addColumn('complemento', 'string', [
                 'default' => null,
                 'limit' => 255,
