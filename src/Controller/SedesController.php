@@ -54,8 +54,11 @@ class SedesController extends AppController
     public function add()
     {
         $sede = $this->Sedes->newEntity();
+        $cidades = $this->Sedes->Enderecos->Cidades->find('list',['keyField' => 'id','valueField' => 'nome']);
+        $estados = $this->Sedes->Enderecos->Cidades->Estados->find('list',['keyField' => 'id','valueField' => 'nome']);
+        $pais = $this->Sedes->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
         if ($this->request->is('post')) {
-            $sede = $this->Sedes->patchEntity($sede, $this->request->getData());
+            $sede = $this->Sedes->patchEntity($sede, $this->request->getData(),['associated' => ['Enderecos','Enderecos.Cidades','Enderecos.Cidades.Estados','Enderecos.Cidades.Estados.Pais']]);
             if ($this->Sedes->save($sede)) {
                 $this->Flash->success(__('The sede has been saved.'));
 
@@ -63,8 +66,7 @@ class SedesController extends AppController
             }
             $this->Flash->error(__('The sede could not be saved. Please, try again.'));
         }
-        $enderecos = $this->Sedes->Enderecos->find('list', ['limit' => 200]);
-        $this->set(compact('sede', 'enderecos'));
+        $this->set(compact('sede','cidades','estados','pais'));
         $this->set('_serialize', ['sede']);
     }
 
