@@ -7,21 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Produtos Model
+ * ProdutosSolicitacoes Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Categorias
- * @property \Cake\ORM\Association\HasMany $Doacoes
- * @property \Cake\ORM\Association\HasMany $Solicitacoes
+ * @property \App\Model\Table\CategoriasTable|\Cake\ORM\Association\BelongsTo $Categorias
  *
- * @method \App\Model\Entity\Produto get($primaryKey, $options = [])
- * @method \App\Model\Entity\Produto newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Produto[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Produto|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Produto patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Produto[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Produto findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco get($primaryKey, $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\ProdutosSolicitaco findOrCreate($search, callable $callback = null, $options = [])
  */
-class ProdutosTable extends Table
+class ProdutosSolicitacoesTable extends Table
 {
 
     /**
@@ -34,19 +32,13 @@ class ProdutosTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('produtos');
+        $this->setTable('produtos_solicitacoes');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Categorias', [
             'foreignKey' => 'categoria_id',
             'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Doacoes', [
-            'foreignKey' => 'produto_id'
-        ]);
-        $this->hasMany('Solicitacoes', [
-            'foreignKey' => 'produto_id'
         ]);
     }
 

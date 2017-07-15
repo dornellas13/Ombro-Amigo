@@ -4,16 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PerfisFuncionalidade Entity
+ * ProdutosDoaco Entity
  *
  * @property int $id
- * @property int $funcionalidade_id
- * @property int $perfil_id
+ * @property string $descricao
+ * @property int $quantidade
+ * @property int $categoria_id
  *
- * @property \App\Model\Entity\Funcionalidade $funcionalidade
- * @property \App\Model\Entity\Perfi $perfi
+ * @property \App\Model\Entity\Categoria $categoria
  */
-class PerfilFuncionalidade extends Entity
+class ProdutosDoacao extends Entity
 {
 
     /**

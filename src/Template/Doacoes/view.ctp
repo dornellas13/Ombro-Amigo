@@ -1,6 +1,7 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\Doaco $doaco
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -12,8 +13,8 @@
         <li><?= $this->Html->link(__('New Doaco'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Produtos Doacoes'), ['controller' => 'ProdutosDoacoes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Produtos Doaco'), ['controller' => 'ProdutosDoacoes', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="doacoes view large-9 medium-8 columns content">
@@ -24,8 +25,8 @@
             <td><?= $doaco->has('pessoa') ? $this->Html->link($doaco->pessoa->id, ['controller' => 'Pessoas', 'action' => 'view', $doaco->pessoa->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Produto') ?></th>
-            <td><?= $doaco->has('produto') ? $this->Html->link($doaco->produto->id, ['controller' => 'Produtos', 'action' => 'view', $doaco->produto->id]) : '' ?></td>
+            <th scope="row"><?= __('Produtos Doaco') ?></th>
+            <td><?= $doaco->has('produtos_doaco') ? $this->Html->link($doaco->produtos_doaco->id, ['controller' => 'ProdutosDoacoes', 'action' => 'view', $doaco->produtos_doaco->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

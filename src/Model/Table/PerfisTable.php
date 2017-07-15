@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Perfis Model
  *
- * @property \Cake\ORM\Association\BelongsToMany $Funcionalidades
- *
  * @method \App\Model\Entity\Perfi get($primaryKey, $options = [])
  * @method \App\Model\Entity\Perfi newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Perfi[] newEntities(array $data, array $options = [])
@@ -35,12 +33,6 @@ class PerfisTable extends Table
         $this->setTable('perfis');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsToMany('Funcionalidades', [
-            'foreignKey' => 'perfi_id',
-            'targetForeignKey' => 'funcionalidade_id',
-            'joinTable' => 'perfis_funcionalidades'
-        ]);
     }
 
     /**

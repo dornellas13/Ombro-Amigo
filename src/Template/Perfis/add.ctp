@@ -7,8 +7,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Perfis'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Funcionalidades'), ['controller' => 'Funcionalidades', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionalidade'), ['controller' => 'Funcionalidades', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="perfis form large-9 medium-8 columns content">
@@ -17,7 +15,6 @@
         <legend><?= __('Add Perfi') ?></legend>
         <?php
             echo $this->Form->control('nome');
-            echo $this->Form->control('funcionalidades._ids', ['options' => $funcionalidades]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

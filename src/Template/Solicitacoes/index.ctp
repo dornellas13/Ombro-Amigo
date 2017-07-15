@@ -1,6 +1,7 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\Solicitaco[]|\Cake\Collection\CollectionInterface $solicitacoes
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -9,8 +10,8 @@
         <li><?= $this->Html->link(__('New Solicitaco'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Produtos Solicitacoes'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Produtos Solicitaco'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="solicitacoes index large-9 medium-8 columns content">
@@ -21,7 +22,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('pessoa_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('produto_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('produtos_solicitacoes_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -31,7 +32,7 @@
                 <td><?= $this->Number->format($solicitaco->id) ?></td>
                 <td><?= h($solicitaco->created) ?></td>
                 <td><?= $solicitaco->has('pessoa') ? $this->Html->link($solicitaco->pessoa->id, ['controller' => 'Pessoas', 'action' => 'view', $solicitaco->pessoa->id]) : '' ?></td>
-                <td><?= $solicitaco->has('produto') ? $this->Html->link($solicitaco->produto->id, ['controller' => 'Produtos', 'action' => 'view', $solicitaco->produto->id]) : '' ?></td>
+                <td><?= $solicitaco->has('produtos_solicitaco') ? $this->Html->link($solicitaco->produtos_solicitaco->id, ['controller' => 'ProdutosSolicitacoes', 'action' => 'view', $solicitaco->produtos_solicitaco->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $solicitaco->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $solicitaco->id]) ?>

@@ -16,12 +16,12 @@ class DoacoesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Pessoas', 'Produtos']
+            'contain' => ['Pessoas', 'ProdutosDoacoes']
         ];
         $doacoes = $this->paginate($this->Doacoes);
 
@@ -33,13 +33,13 @@ class DoacoesController extends AppController
      * View method
      *
      * @param string|null $id Doaco id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $doaco = $this->Doacoes->get($id, [
-            'contain' => ['Pessoas', 'Produtos']
+            'contain' => ['Pessoas', 'ProdutosDoacoes']
         ]);
 
         $this->set('doaco', $doaco);
@@ -64,8 +64,8 @@ class DoacoesController extends AppController
             $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
         }
         $pessoas = $this->Doacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtos = $this->Doacoes->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('doaco', 'pessoas', 'produtos'));
+        $produtosDoacoes = $this->Doacoes->ProdutosDoacoes->find('list', ['limit' => 200]);
+        $this->set(compact('doaco', 'pessoas', 'produtosDoacoes'));
         $this->set('_serialize', ['doaco']);
     }
 
@@ -91,8 +91,8 @@ class DoacoesController extends AppController
             $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
         }
         $pessoas = $this->Doacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtos = $this->Doacoes->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('doaco', 'pessoas', 'produtos'));
+        $produtosDoacoes = $this->Doacoes->ProdutosDoacoes->find('list', ['limit' => 200]);
+        $this->set(compact('doaco', 'pessoas', 'produtosDoacoes'));
         $this->set('_serialize', ['doaco']);
     }
 

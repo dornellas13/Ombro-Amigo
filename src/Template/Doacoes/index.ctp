@@ -1,6 +1,7 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\Doaco[]|\Cake\Collection\CollectionInterface $doacoes
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -9,8 +10,8 @@
         <li><?= $this->Html->link(__('New Doaco'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Produtos Doacoes'), ['controller' => 'ProdutosDoacoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Produtos Doaco'), ['controller' => 'ProdutosDoacoes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="doacoes index large-9 medium-8 columns content">
@@ -21,7 +22,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('pessoa_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('produto_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('produtos_doacoes_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -31,7 +32,7 @@
                 <td><?= $this->Number->format($doaco->id) ?></td>
                 <td><?= h($doaco->created) ?></td>
                 <td><?= $doaco->has('pessoa') ? $this->Html->link($doaco->pessoa->id, ['controller' => 'Pessoas', 'action' => 'view', $doaco->pessoa->id]) : '' ?></td>
-                <td><?= $doaco->has('produto') ? $this->Html->link($doaco->produto->id, ['controller' => 'Produtos', 'action' => 'view', $doaco->produto->id]) : '' ?></td>
+                <td><?= $doaco->has('produtos_doaco') ? $this->Html->link($doaco->produtos_doaco->id, ['controller' => 'ProdutosDoacoes', 'action' => 'view', $doaco->produtos_doaco->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $doaco->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $doaco->id]) ?>

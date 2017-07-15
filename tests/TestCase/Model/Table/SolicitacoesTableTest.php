@@ -34,7 +34,8 @@ class SolicitacoesTableTest extends TestCase
         'app.doacoes',
         'app.produtos',
         'app.categorias',
-        'app.users'
+        'app.users',
+        'app.perfis'
     ];
 
     /**
@@ -45,7 +46,7 @@ class SolicitacoesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Solicitacoes') ? [] : ['className' => 'App\Model\Table\SolicitacoesTable'];
+        $config = TableRegistry::exists('Solicitacoes') ? [] : ['className' => SolicitacoesTable::class];
         $this->Solicitacoes = TableRegistry::get('Solicitacoes', $config);
     }
 

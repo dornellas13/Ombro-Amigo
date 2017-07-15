@@ -1,19 +1,33 @@
 <?php
-use Migrations\AbstractMigration;
 
-class Solicitacoes extends AbstractMigration
+use Phinx\Migration\AbstractMigration;
+
+class Doacoes extends AbstractMigration
 {
     /**
      * Change Method.
      *
-     * More information on this method is available here:
-     * http://docs.phinx.org/en/latest/migrations.html#the-change-method
-     * @return void
+     * Write your reversible migrations using this method.
+     *
+     * More information on writing migrations is available here:
+     * http://docs.phinx.org/en/latest/migrations.html#the-abstractmigration-class
+     *
+     * The following commands can be used in this method and Phinx will
+     * automatically reverse them when rolling back:
+     *
+     *    createTable
+     *    renameTable
+     *    addColumn
+     *    renameColumn
+     *    addIndex
+     *    addForeignKey
+     *
+     * Remember to call "create()" or "update()" and NOT "save()" when working
+     * with the Table class.
      */
     public function change()
     {
-
-        $this->table('solicitacoes')
+        $this->table('doacoes')
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
@@ -24,7 +38,7 @@ class Solicitacoes extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('produto_id', 'integer', [
+            ->addColumn('produtos_doacoes_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
@@ -36,10 +50,10 @@ class Solicitacoes extends AbstractMigration
             )
             ->addIndex(
                 [
-                    'produto_id',
+                    'produtos_doacoes_id',
                 ]
             )
-            ->addForeignKey(
+             ->addForeignKey(
                 'pessoa_id',
                 'pessoas',
                 'id',
@@ -49,14 +63,15 @@ class Solicitacoes extends AbstractMigration
                 ]
             )
             ->addForeignKey(
-                'produto_id',
-                'produtos',
+                'produtos_doacoes_id',
+                'produtos_doacoes',
                 'id',
                 [
                     'update' => 'CASCADE',
                     'delete' => 'RESTRICT'
                 ]
             )
+
             ->create();
 
     }

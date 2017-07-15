@@ -37,7 +37,7 @@ class PerfisTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Perfis') ? [] : ['className' => 'App\Model\Table\PerfisTable'];
+        $config = TableRegistry::exists('Perfis') ? [] : ['className' => PerfisTable::class];
         $this->Perfis = TableRegistry::get('Perfis', $config);
     }
 

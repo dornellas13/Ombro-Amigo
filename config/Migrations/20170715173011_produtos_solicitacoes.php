@@ -1,18 +1,33 @@
 <?php
-use Migrations\AbstractMigration;
 
-class Produtos extends AbstractMigration
+use Phinx\Migration\AbstractMigration;
+
+class ProdutosSolicitacoes extends AbstractMigration
 {
     /**
      * Change Method.
      *
-     * More information on this method is available here:
-     * http://docs.phinx.org/en/latest/migrations.html#the-change-method
-     * @return void
+     * Write your reversible migrations using this method.
+     *
+     * More information on writing migrations is available here:
+     * http://docs.phinx.org/en/latest/migrations.html#the-abstractmigration-class
+     *
+     * The following commands can be used in this method and Phinx will
+     * automatically reverse them when rolling back:
+     *
+     *    createTable
+     *    renameTable
+     *    addColumn
+     *    renameColumn
+     *    addIndex
+     *    addForeignKey
+     *
+     * Remember to call "create()" or "update()" and NOT "save()" when working
+     * with the Table class.
      */
     public function change()
     {
-            $this->table('produtos')
+         $this->table('produtos_solicitacoes')
             ->addColumn('descricao', 'string', [
                 'default' => null,
                 'limit' => 255,
@@ -43,6 +58,8 @@ class Produtos extends AbstractMigration
                 ]
             )
             ->create();
-
     }
 }
+
+
+

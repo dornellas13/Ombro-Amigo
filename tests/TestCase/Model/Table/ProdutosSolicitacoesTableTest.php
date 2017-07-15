@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\DoacoesTable;
+use App\Model\Table\ProdutosSolicitacoesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\DoacoesTable Test Case
+ * App\Model\Table\ProdutosSolicitacoesTable Test Case
  */
-class DoacoesTableTest extends TestCase
+class ProdutosSolicitacoesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\DoacoesTable
+     * @var \App\Model\Table\ProdutosSolicitacoesTable
      */
-    public $Doacoes;
+    public $ProdutosSolicitacoes;
 
     /**
      * Fixtures
@@ -24,6 +24,9 @@ class DoacoesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.produtos_solicitacoes',
+        'app.categorias',
+        'app.produtos',
         'app.doacoes',
         'app.pessoas',
         'app.enderecos',
@@ -32,9 +35,6 @@ class DoacoesTableTest extends TestCase
         'app.pais',
         'app.sedes',
         'app.solicitacoes',
-        'app.produtos_solicitacoes',
-        'app.categorias',
-        'app.produtos',
         'app.users',
         'app.perfis'
     ];
@@ -47,8 +47,8 @@ class DoacoesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Doacoes') ? [] : ['className' => DoacoesTable::class];
-        $this->Doacoes = TableRegistry::get('Doacoes', $config);
+        $config = TableRegistry::exists('ProdutosSolicitacoes') ? [] : ['className' => ProdutosSolicitacoesTable::class];
+        $this->ProdutosSolicitacoes = TableRegistry::get('ProdutosSolicitacoes', $config);
     }
 
     /**
@@ -58,7 +58,7 @@ class DoacoesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Doacoes);
+        unset($this->ProdutosSolicitacoes);
 
         parent::tearDown();
     }

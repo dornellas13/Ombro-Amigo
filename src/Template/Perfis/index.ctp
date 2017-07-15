@@ -1,14 +1,13 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\Perfi[]|\Cake\Collection\CollectionInterface $perfis
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Perfi'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Funcionalidades'), ['controller' => 'Funcionalidades', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionalidade'), ['controller' => 'Funcionalidades', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="perfis index large-9 medium-8 columns content">

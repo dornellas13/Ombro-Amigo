@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Doacoes Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Pessoas
- * @property \Cake\ORM\Association\BelongsTo $Produtos
+ * @property \App\Model\Table\PessoasTable|\Cake\ORM\Association\BelongsTo $Pessoas
+ * @property |\Cake\ORM\Association\BelongsTo $ProdutosDoacoes
  *
  * @method \App\Model\Entity\Doaco get($primaryKey, $options = [])
  * @method \App\Model\Entity\Doaco newEntity($data = null, array $options = [])
@@ -45,8 +45,8 @@ class DoacoesTable extends Table
             'foreignKey' => 'pessoa_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Produtos', [
-            'foreignKey' => 'produto_id',
+        $this->belongsTo('ProdutosDoacoes', [
+            'foreignKey' => 'produtos_doacoes_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -76,7 +76,7 @@ class DoacoesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['pessoa_id'], 'Pessoas'));
-        $rules->add($rules->existsIn(['produto_id'], 'Produtos'));
+        $rules->add($rules->existsIn(['produtos_doacoes_id'], 'ProdutosDoacoes'));
 
         return $rules;
     }

@@ -4,7 +4,7 @@ use Migrations\AbstractSeed;
 /**
  * Produtos seed.
  */
-class ProdutosSeed extends AbstractSeed
+class ProdutosSolicitacoesSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -99,7 +99,7 @@ class ProdutosSeed extends AbstractSeed
             ],
         ];
 
-        $table = $this->table('produtos');
+        $table = $this->table('produtos_solicitacoes');
         $table->insert($data)->save();
     }
 }

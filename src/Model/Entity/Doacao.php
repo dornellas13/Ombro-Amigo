@@ -9,12 +9,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property \Cake\I18n\FrozenTime $created
  * @property int $pessoa_id
- * @property int $produto_id
+ * @property int $produtos_doacoes_id
  *
  * @property \App\Model\Entity\Pessoa $pessoa
  * @property \App\Model\Entity\Produto $produto
  */
-class Doaco extends Entity
+class Doacao extends Entity
 {
 
     /**

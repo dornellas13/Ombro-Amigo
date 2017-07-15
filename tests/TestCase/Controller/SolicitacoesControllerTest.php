@@ -24,12 +24,12 @@ class SolicitacoesControllerTest extends IntegrationTestCase
         'app.pais',
         'app.sedes',
         'app.doacoes',
-        'app.produtos',
+        'app.produtos_doacoes',
         'app.categorias',
+        'app.produtos',
         'app.users',
         'app.perfis',
-        'app.funcionalidades',
-        'app.perfis_funcionalidades'
+        'app.produtos_solicitacoes'
     ];
 
     /**

@@ -1,22 +1,19 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\ProdutosDoaco[]|\Cake\Collection\CollectionInterface $produtosDoacoes
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Produtos Doaco'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Categorias'), ['controller' => 'Categorias', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Doacoes'), ['controller' => 'Doacoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Doaco'), ['controller' => 'Doacoes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Solicitacoes'), ['controller' => 'Solicitacoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Solicitaco'), ['controller' => 'Solicitacoes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="produtos index large-9 medium-8 columns content">
-    <h3><?= __('Produtos') ?></h3>
+<div class="produtosDoacoes index large-9 medium-8 columns content">
+    <h3><?= __('Produtos Doacoes') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -28,16 +25,16 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($produtos as $produto): ?>
+            <?php foreach ($produtosDoacoes as $produtosDoaco): ?>
             <tr>
-                <td><?= $this->Number->format($produto->id) ?></td>
-                <td><?= h($produto->descricao) ?></td>
-                <td><?= $this->Number->format($produto->quantidade) ?></td>
-                <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
+                <td><?= $this->Number->format($produtosDoaco->id) ?></td>
+                <td><?= h($produtosDoaco->descricao) ?></td>
+                <td><?= $this->Number->format($produtosDoaco->quantidade) ?></td>
+                <td><?= $produtosDoaco->has('categoria') ? $this->Html->link($produtosDoaco->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produtosDoaco->categoria->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $produtosDoaco->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produtosDoaco->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produtosDoaco->id], ['confirm' => __('Are you sure you want to delete # {0}?', $produtosDoaco->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

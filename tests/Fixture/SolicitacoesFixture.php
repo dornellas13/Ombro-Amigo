@@ -20,15 +20,15 @@ class SolicitacoesFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'pessoa_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'produto_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'produtos_solicitacoes_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'pessoa_id' => ['type' => 'index', 'columns' => ['pessoa_id'], 'length' => []],
-            'produto_id' => ['type' => 'index', 'columns' => ['produto_id'], 'length' => []],
+            'produtos_solicitacoes_id' => ['type' => 'index', 'columns' => ['produtos_solicitacoes_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'solicitacoes_ibfk_1' => ['type' => 'foreign', 'columns' => ['pessoa_id'], 'references' => ['pessoas', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
-            'solicitacoes_ibfk_2' => ['type' => 'foreign', 'columns' => ['produto_id'], 'references' => ['produtos', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
+            'solicitacoes_ibfk_2' => ['type' => 'foreign', 'columns' => ['produtos_solicitacoes_id'], 'references' => ['produtos_solicitacoes', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -45,9 +45,9 @@ class SolicitacoesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'created' => '2017-05-14 21:53:08',
+            'created' => '2017-07-15 17:42:48',
             'pessoa_id' => 1,
-            'produto_id' => 1
+            'produtos_solicitacoes_id' => 1
         ],
     ];
 }

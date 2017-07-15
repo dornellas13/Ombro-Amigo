@@ -9,8 +9,8 @@
         <li><?= $this->Html->link(__('List Solicitacoes'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Produtos Solicitacoes'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Produtos Solicitaco'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="solicitacoes form large-9 medium-8 columns content">
@@ -19,7 +19,7 @@
         <legend><?= __('Add Solicitaco') ?></legend>
         <?php
             echo $this->Form->control('pessoa_id', ['options' => $pessoas]);
-            echo $this->Form->control('produto_id', ['options' => $produtos]);
+            echo $this->Form->control('produtos_solicitacoes_id', ['options' => $produtosSolicitacoes]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
