@@ -1,59 +1,65 @@
 <?php
 /**
   * @var \App\View\AppView $this
-  */
+  */    
+        /* Renderização de scripts */
+
+        echo $this->Html->script('App/sedes.js')
 ?>
+<div class="row">
+  <nav>
+    <div class="nav-wrapper">
+      <span class="brand-logo center">Cadastrar Sede</span>
+    </div>
+  </nav>
+</div>
 <div class="row">
     <?= $this->Form->create($sede,['class' => 'col s12']) ?>
       <div class="row">
         <div class="input-field col s6">
-        <?= $this->Form->control('nome',['class' => 'validate','type' => 'text','id' => 'nome_sede'])?>
+        <?= $this->Form->control('nome',['class' => '','type' => 'text','escape' => false])?>
         </div>
-          <div class="input-field col s6">
-        <?= $this->Form->control('telefone',['class' => 'validate','type' => 'text','id' => 'nome_sede'])?>
+      <div class="input-field col s6">
+        <?= $this->Form->control('telefone',['class' => 'validate','type' => 'text'])?>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
-             <?= $this->Form->control('Endereco.cep',['class' => 'validate','type' => 'text','id' => 'nome_sede'])?>
-        </div>
-            
-        <div class="input-field col s8">
-            <?php echo $this->Form->control('Endereco.logradouro', array('class' => 'validate'));?>
+             <?= $this->Form->control('endereco.cep',['class' => 'validate','type' => 'text'])?>
         </div>
         <div class="input-field col s8">
-            <?php echo $this->Form->control('Endereco.bairro', array('class' => 'validate'));?>
+            <?=$this->Form->control('endereco.logradouro', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s8">
+            <?=$this->Form->control('endereco.bairro', array('class' => 'validate'));?>
         </div>
         <div class="input-field col s4">
-            <?php echo $this->Form->control('Endereco.numero', array('class' => 'validate'));?>
+            <?=$this->Form->control('endereco.numero', array('class' => 'validate'));?>
         </div>
-        <div class="input-field col s2">
-            <?php echo $this->Form->control('Endereco.complemento', array('class' => 'validate'));?>
+        <div class="input-field col s12">
+            <?=$this->Form->control('endereco.complemento', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s4">
+            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'browser-default validate','id' => 'select_pais','label' => false,'empty' => ' ']);
+            ?>
         </div>
 
-        <div class="input-field col s10 browser-default">
-            <?php echo $this->Form->control('Endereco.cidade_id',['options' => $cidades],['id' => 'select_cidades','multiple' => true]);
+        <div class="input-field col s4">
+            <?=$this->Form->select('endereco.cidade.estado_id',null,['class' => 'browser-default validate','id' => 'select_estado','disabled' => true]);
             ?>
         </div>
-         <div class="input-field col s6">
-            <?php echo $this->Form->control('Endereco.Cidade.estado_id',['options' => $estados],['id' => 'select_cidades','multiple' => true]);
+
+        <div class="input-field col s4">
+             <?=$this->Form->select('endereco.cidade_id', null, ['class' => 'browser-default validate','id' => 'select_cidade','disabled' => true,'empty' => 'Selecione uma cidade']);
             ?>
         </div>
-         <div class="input-field col s6">
-            <?php echo $this->Form->control('Endereco.Cidade.Estado.pais_id',['options' => $pais],['id' => 'select_cidades','multiple' => true]);
-            ?>
-        </div>
+
       </div>
       <div class="row">
+        <?=$this->Html->Link('Voltar',['controller' => 'sedes','action' => 'index'],['class' => 'btn waves-effect waves-light'])?>
          <?= $this->Form->button('Salvar <i class="material-icons right">send</i>',['class' => 'btn waves-effect waves-light','id' => 'salvar_sede','type' => 'submit']) ?>
+      
       </div> 
    
-    <?= $this->Form->end() ?>
+    <?= $this->Form->end()?>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-     $("#select_cidades").select2();
-     $('select').material_select();
-  });
-</script>

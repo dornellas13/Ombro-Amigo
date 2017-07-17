@@ -26,13 +26,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     
     <!-- Carregando materialize -->
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <?= $this->Html->css('materialize.css') ?>
         <?= $this->Html->css('select2-materialize.css') ?>
         <?= $this->Html->script('jquery-3.2.1.js') ?>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <?= $this->Html->script('materialize.js') ?>
-        <?= $this->Html->script('select2.min.js') ?>
+        <?= $this->Html->script('select2/select2.min.js') ?>
+        <?= $this->Html->script('select2/i18n/pt-BR.js');?>
+        <?= $this->Html->script('App/CommonJS.js') ?>
+
 
 
     <!-- Fim carregamento materialize -->
@@ -43,6 +45,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content"></div>
+        <div class="modal-footer"></div>
+    </div>
+
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">

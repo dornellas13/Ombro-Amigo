@@ -14,7 +14,7 @@ class Sedes extends AbstractMigration
     {
 
         $this->table('sedes')
-            ->addColumn('nome', 'integer', [
+            ->addColumn('nome', 'string', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,

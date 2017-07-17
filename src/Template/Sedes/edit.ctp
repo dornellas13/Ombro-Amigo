@@ -1,32 +1,67 @@
 <?php
 /**
   * @var \App\View\AppView $this
-  */
+  */    
+        /* Renderização de scripts */
+
+        echo $this->Html->script('App/sedes.js')
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $sede->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $sede->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Sedes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="sedes form large-9 medium-8 columns content">
-    <?= $this->Form->create($sede) ?>
-    <fieldset>
-        <legend><?= __('Edit Sede') ?></legend>
-        <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('telefone');
-            echo $this->Form->control('endereco_id', ['options' => $enderecos]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+
+<div class="row">
+  <nav>
+    <div class="nav-wrapper">
+      <span class="brand-logo center">Cadastrar Sede</span>
+    </div>
+  </nav>
+</div>
+<div class="row">
+    <?= $this->Form->create($sede,['class' => 'col s12']) ?>
+      <div class="row">
+        <div class="input-field col s6">
+        <?= $this->Form->control('nome',['class' => '','type' => 'text','escape' => false])?>
+        </div>
+      <div class="input-field col s6">
+        <?= $this->Form->control('telefone',['class' => 'validate','type' => 'text'])?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+             <?= $this->Form->control('endereco.cep',['class' => 'validate','type' => 'text'])?>
+        </div>
+        <div class="input-field col s8">
+            <?=$this->Form->control('endereco.logradouro', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s8">
+            <?=$this->Form->control('endereco.bairro', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s4">
+            <?=$this->Form->control('endereco.numero', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s12">
+            <?=$this->Form->control('endereco.complemento', array('class' => 'validate'));?>
+        </div>
+        <div class="input-field col s4">
+            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'browser-default validate','id' => 'select_pais','label' => false,'empty' => ' ']);
+            ?>
+        </div>
+
+        <div class="input-field col s4">
+            <?=$this->Form->select('endereco.cidade.estado_id',$estados,['class' => 'browser-default validate','id' => 'select_estado','disabled' => false]);
+            ?>
+        </div>
+
+        <div class="input-field col s4">
+             <?=$this->Form->select('endereco.cidade_id', $cidades, ['class' => 'browser-default validate','id' => 'select_cidade','disabled' => false]);
+            ?>
+        </div>
+
+      </div>
+      <div class="row">
+        <?=$this->Html->Link('Voltar',['controller' => 'sedes','action' => 'index'],['class' => 'btn waves-effect waves-light'])?>
+         <?= $this->Form->button('Salvar <i class="material-icons right">send</i>',['class' => 'btn waves-effect waves-light','id' => 'salvar_sede','type' => 'submit']) ?>
+      
+      </div> 
+   
+    <?= $this->Form->end()?>
 </div>

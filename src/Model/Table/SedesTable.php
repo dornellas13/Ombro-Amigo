@@ -55,7 +55,6 @@ class SedesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('nome')
             ->requirePresence('nome', 'create')
             ->notEmpty('nome');
 
