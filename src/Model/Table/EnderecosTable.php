@@ -67,6 +67,10 @@ class EnderecosTable extends Table
             ->notEmpty('logradouro');
 
         $validator
+            ->requirePresence('cep', 'create')
+            ->notEmpty('cep');
+
+        $validator
             ->requirePresence('bairro', 'create')
             ->notEmpty('bairro');
 
@@ -77,7 +81,7 @@ class EnderecosTable extends Table
             ->integer('numero')
             ->requirePresence('numero', 'create')
             ->notEmpty('numero');
-
+            
         return $validator;
     }
 

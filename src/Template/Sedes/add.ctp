@@ -14,10 +14,10 @@
   </nav>
 </div>
 <div class="row">
-    <?= $this->Form->create($sede,['class' => 'col s12']) ?>
+    <?= $this->Form->create($sede,['class' => 'col s12','id' => 'formSede']) ?>
       <div class="row">
         <div class="input-field col s6">
-        <?= $this->Form->control('nome',['class' => '','type' => 'text','escape' => false])?>
+        <?= $this->Form->control('nome',['class' => '','type' => 'text'])?>
         </div>
       <div class="input-field col s6">
         <?= $this->Form->control('telefone',['class' => 'validate','type' => 'text'])?>
@@ -39,19 +39,23 @@
         <div class="input-field col s12">
             <?=$this->Form->control('endereco.complemento', array('class' => 'validate'));?>
         </div>
-        <div class="input-field col s4">
-            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'browser-default validate','id' => 'select_pais','label' => false,'empty' => ' ']);
+        <div class="col s4">
+            <label>País</label>
+            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'browser-default validate','id' => 'select_pais','label' => false,'empty' => 'Selecione um país','required' => true]);
             ?>
         </div>
 
-        <div class="input-field col s4">
-            <?=$this->Form->select('endereco.cidade.estado_id',null,['class' => 'browser-default validate','id' => 'select_estado','disabled' => true]);
+        <div class="col s4">
+            <label>Estado</label>
+            <?=$this->Form->select('endereco.cidade.estado_id',null,['class' => 'browser-default validate','empty' => 'Selecione um estado','id' => 'select_estado','disabled' => false, 'required'=>true]);
             ?>
         </div>
 
-        <div class="input-field col s4">
-             <?=$this->Form->select('endereco.cidade_id', null, ['class' => 'browser-default validate','id' => 'select_cidade','disabled' => true,'empty' => 'Selecione uma cidade']);
+        <div class="select-dropdown col s4">
+            <label>Cidade</label>
+            <?=$this->Form->select('endereco.cidade_id', null, ['class' => 'browser-default validate','id' => 'select_cidade','disabled' => false,'empty' => 'Selecione uma cidade','required' => true]);
             ?>
+        
         </div>
 
       </div>
@@ -63,3 +67,4 @@
    
     <?= $this->Form->end()?>
 </div>
+

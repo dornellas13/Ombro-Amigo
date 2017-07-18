@@ -26,18 +26,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     
     <!-- Carregando materialize -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <?= $this->Html->css('materialize.css') ?>
-        <?= $this->Html->css('select2-materialize.css') ?>
         <?= $this->Html->script('jquery-3.2.1.js') ?>
         <?= $this->Html->script('materialize.js') ?>
         <?= $this->Html->script('select2/select2.min.js') ?>
         <?= $this->Html->script('select2/i18n/pt-BR.js');?>
         <?= $this->Html->script('App/CommonJS.js') ?>
-
-
+        <!-- Jquery-validation-1.16.0 -->
+        <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
 
     <!-- Fim carregamento materialize -->
+
+    <!-- Carregamento CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <?= $this->Html->css('materialize.css') ?>
+    <?= $this->Html->css('select2-materialize.css') ?>
+    <?= $this->Html->css('App/ombroamigoestilos.css') ?>
+
 
     <?= $this->Html->meta('icon') ?>
     <?= $this->fetch('meta') ?>
