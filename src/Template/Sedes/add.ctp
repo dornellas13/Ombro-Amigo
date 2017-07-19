@@ -65,9 +65,7 @@
         </div>
       </nav>
     </div>
-
-
-    <?= $this->Form->create($sede,['class' => 'col s12']) ?>
+    <?= $this->Form->create($sede,['class' => 'col s12','id' => 'formSede']) ?>
       <div class="row">
 
 
@@ -112,7 +110,6 @@
              <?=$this->Form->control('endereco.complemento', array('class' => 'validate form-control'));?>
           <span class="material-input"></span></div>
         </div>
-
       </div>
 
       <div class="row">
@@ -138,13 +135,6 @@
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-2">
-          <div class="form-group is-empty">
-            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'form-control browser-default validate','id' => 'select_pais','label' => false,'empty' => ' ']);
-            ?>
-          <span class="material-input"></span></div>
-        </div>
-
       </div>
       <div class="row">
         <?=$this->Html->Link('Voltar',['controller' => 'sedes','action' => 'index'],['class' => 'btn btn-danger'])?>
@@ -156,3 +146,4 @@
   </div>
 
 </div>
+

@@ -1,25 +1,40 @@
 <!doctype html>
 <html lang="PT-BR">
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8" />
 
     <title>Ombro Amigo</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
+    <?= $this->Html->meta('icon') ?>
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <!-- CSS Files -->
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-   
+    <!-- Carregando materialize -->
+        <?= $this->Html->script('jquery-3.2.1.js') ?>
+        <?= $this->Html->script('materialize.js') ?>
+        <?= $this->Html->script('select2/select2.min.js') ?>
+        <?= $this->Html->script('select2/i18n/pt-BR.js');?>
+        <?= $this->Html->script('App/CommonJS.js') ?>
+        
+        <!-- Jquery-validation-1.16.0 -->
+        <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
 
+    <!-- Fim carregamento materialize -->
+
+    <!-- Carregamento CSS -->
+    <?= $this->Html->css('materialize.css') ?>
+    <?= $this->Html->css('select2-materialize.css') ?>
+    <?= $this->Html->css('App/ombroamigoestilos.css') ?>
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('material-kit.css') ?>
     <?= $this->Html->css('demo.css') ?>

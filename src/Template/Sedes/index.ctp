@@ -34,8 +34,8 @@ echo $this->Html->script('App/sedes.js')
                 <td><?=$sede->endereco->cidade->estado->nome?></td>
                 <td><?=$sede->endereco->cidade->estado->pai->nome?></td>
                 <td class="actions">
-                    <?= $this->Form->button('<i class="material-icons">mode_edit</i>', ['data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Editar','class' => 'btn-floating tooltipped blue','escape' => false],['action' => 'edit', $sede->id])?>
-                    <?= $this->Form->button('<i class="material-icons">delete</i>', ['data-id' => $sede->id,'data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Excluir','class' => 'btn-floating tooltipped red','escape' => false,'name' => 'excluirSede']) ?>
+                    <?= $this->Html->link('<i class="material-icons">mode_edit</i>', ['action' => 'edit', $sede->id],['data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Editar','class' => 'btn-floating tooltipped blue','escape' => false])?>
+                    <?= $this->Form->postLink('<i class="material-icons">delete</i>', ['action' => 'delete', $sede->id], ['data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Excluir','class' => 'btn-floating tooltipped red','escape' => false,'confirm' =>'Tem certeza de que deseja excluir a sede '.$sede->nome.'?',]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
