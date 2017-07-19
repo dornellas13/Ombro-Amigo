@@ -19,7 +19,8 @@ class ProdutosDoacoesController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
+    {   
+        $this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Categorias']
         ];

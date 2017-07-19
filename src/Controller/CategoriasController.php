@@ -19,6 +19,7 @@ class CategoriasController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->layout('admin');
         $categorias = $this->paginate($this->Categorias);
         $this->set(compact('categorias'));
         $this->set('_serialize', ['categorias']);

@@ -19,6 +19,7 @@ class SedesController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Enderecos','Enderecos.Cidades','Enderecos.Cidades','Enderecos.Cidades.Estados','Enderecos.Cidades.Estados.Pais'],
             'limit' => 5,
@@ -38,6 +39,7 @@ class SedesController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $sede = $this->Sedes->get($id, [
             'contain' => ['Enderecos']
         ]);
@@ -53,6 +55,7 @@ class SedesController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->layout('admin');
         $sede = $this->Sedes->newEntity();
         $pais = $this->Sedes->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
         if ($this->request->is('post')) {
@@ -77,6 +80,7 @@ class SedesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $sede = $this->Sedes->get($id, [
             'contain' => ['Enderecos','Enderecos.Cidades','Enderecos.Cidades','Enderecos.Cidades.Estados','Enderecos.Cidades.Estados.Pais']
         ]);
