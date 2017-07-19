@@ -41,7 +41,7 @@
             <a href="http://www.creative-tim.com">
                 <div class="logo-container">
                     <div class="logo">
-                        <img src="../Ombro-Amigo/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+                        <img src="img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
                     </div>
                     <div class="brand">
                         Logotipo
@@ -87,7 +87,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('../Ombro-Amigo/img/bg2.jpeg');">
+    <div class="header header-filter" style="background-image: url('img/bg2.jpeg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
