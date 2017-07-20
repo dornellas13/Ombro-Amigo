@@ -12,6 +12,20 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
+        <!-- JAVASCRIPT FILES -->
+        <?= $this->Html->script('jquery-3.2.1.js') ?>
+        <?= $this->Html->script('materialize.js') ?>
+        <?= $this->Html->script('select2/select2.min.js') ?>
+        <?= $this->Html->script('select2/i18n/pt-BR.js');?>
+        <?= $this->Html->script('App/CommonJS.js') ?>
+        <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('material.min.js') ?>
+        <?= $this->Html->script('nouislider.min.js') ?>
+        <?= $this->Html->script('bootstrap-datepicker.js') ?>
+        <?= $this->Html->script('material-kit.js') ?>
+
+        <!-- Jquery-validation-1.16.0 -->
+        <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
     <!-- CSS Files -->
 
     <?= $this->Html->meta('icon') ?>
@@ -23,6 +37,7 @@
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('material-kit.css') ?>
     <?= $this->Html->css('demo.css') ?>
+     <?= $this->Html->css('App/ombroamigoestilos.css') ?>
     
     
 </head>
@@ -1373,14 +1388,6 @@
 
 </body>
     <!--   Core JS Files   -->
-
-    <?= $this->Html->script('jquery.min.js') ?>
-    <?= $this->Html->script('bootstrap.min.js') ?>
-    <?= $this->Html->script('material.min.js') ?>
-    <?= $this->Html->script('nouislider.min.js') ?>
-    <?= $this->Html->script('bootstrap-datepicker.js') ?>
-    <?= $this->Html->script('material-kit.js') ?>
-    
 
     <script type="text/javascript">
 

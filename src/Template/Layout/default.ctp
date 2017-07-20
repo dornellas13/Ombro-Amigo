@@ -1,43 +1,49 @@
 <!doctype html>
 <html lang="PT-BR">
 <head>
-<<<<<<< HEAD
     <meta charset="utf-8" />
 
     <title>Ombro Amigo</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- FIM FONTS -->
 
 
-    <!-- Carregando materialize -->
+    <!-- Carregando JAVASCRIPT -->
         <?= $this->Html->script('jquery-3.2.1.js') ?>
         <?= $this->Html->script('materialize.js') ?>
         <?= $this->Html->script('select2/select2.min.js') ?>
         <?= $this->Html->script('select2/i18n/pt-BR.js');?>
         <?= $this->Html->script('App/CommonJS.js') ?>
+        <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('material.min.js') ?>
+        <?= $this->Html->script('nouislider.min.js') ?>
+        <?= $this->Html->script('bootstrap-datepicker.js') ?>
+        <?= $this->Html->script('material-kit.js') ?>
         
         <!-- Jquery-validation-1.16.0 -->
         <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
 
-    <!-- Fim carregamento materialize -->
+    <!-- Fim carregamento JAVASCRIPT -->
 
     <!-- Carregamento CSS -->
-    <?= $this->Html->css('materialize.css') ?>
-    <?= $this->Html->css('select2-materialize.css') ?>
-    <?= $this->Html->css('App/ombroamigoestilos.css') ?>
-    <?= $this->Html->css('bootstrap.min.css') ?>
-    <?= $this->Html->css('material-kit.css') ?>
-    <?= $this->Html->css('demo.css') ?>
+        <?= $this->Html->css('select2-materialize.css') ?>
+        <?= $this->Html->css('App/ombroamigoestilos.css') ?>
+        <?= $this->Html->css('bootstrap.min.css') ?>
+        <?= $this->Html->css('material-kit.css') ?>
+        <?= $this->Html->css('demo.css') ?>
+
+        <?= $this->Html->meta('icon') ?>
+        <?= $this->fetch('meta') ?>
+        <?= $this->fetch('css') ?>
+        <?= $this->fetch('script') ?>
+    <!-- Fim CSS -->
     
     
 </head>
@@ -90,7 +96,7 @@
                     </a>
                 </li>
                 <li>
-                    <a rel="tooltip" title="Sina-nos no Instagram" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+                    <a rel="tooltip" title="sIGA-nos no Instagram" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
                         <i class="fa fa-instagram"></i>
                     </a>
                 </li>
@@ -1394,13 +1400,7 @@
 
 </body>
     <!--   Core JS Files   -->
-
-    <?= $this->Html->script('jquery.min.js') ?>
-    <?= $this->Html->script('bootstrap.min.js') ?>
-    <?= $this->Html->script('material.min.js') ?>
-    <?= $this->Html->script('nouislider.min.js') ?>
-    <?= $this->Html->script('bootstrap-datepicker.js') ?>
-    <?= $this->Html->script('material-kit.js') ?>
+  
     
 
     <script type="text/javascript">

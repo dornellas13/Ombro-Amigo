@@ -53,19 +53,25 @@ Sedes.prototype = {
 			rules: {
 				nome: "required",
 				telefone: "required",
-				select_pais:"required",
-				select_cidade:"required",
-				select_estado: "required",
+				'endereco[logradouro]':'required',
+				'endereco[bairro]':'required',
+				'endereco[numero]':'required',
 				'endereco[cep]':"required",
-				'endereco[cidade][estado][pais_id]':'required'
+				'endereco[cidade][estado][pais_id]':'required',
+				'endereco[cidade][estado_id]': 'required',
+				'endereco[cidade_id]':'required',
 			},
 			messages: {
 				nome: "Por favor informe seu nome",
 				telefone: "Por favor informe um telefone",
+				'endereco[logradouro]':'Por favor informe um logradouro',
+				'endereco[bairro]':'Por favor informe um bairro',
+				'endereco[numero]':'Por favor informe um numero',
 				'endereco[cep]':"Por favor informe um cep",
 				'endereco[cidade][estado][pais_id]':'Por favor selecione um país',
 				'endereco[cidade][estado_id]': 'Por favor selecione um estado',
-				'endereco[cidade_id]': 'Por favor selecione uma cidade'
+				'endereco[cidade_id]': 'Por favor selecione uma cidade',
+		
 
 			},
 			errorElement : 'div',

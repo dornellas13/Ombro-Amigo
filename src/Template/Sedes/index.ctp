@@ -7,12 +7,12 @@ echo $this->Html->script('App/sedes.js')
 <div class="row">
   <nav>
     <div class="nav-wrapper">
-      <span class="brand-logo center">Sedes</span>
+      <!-- <span class="brand-logo center">Sedes</span> -->
     </div>
   </nav>
 </div>
 <div class="sedes index large-9 medium-8 columns content">
-    <table cellpadding="0" cellspacing="0" class="striped responsive-table">
+    <table cellpadding="0" cellspacing="0" class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
@@ -34,8 +34,8 @@ echo $this->Html->script('App/sedes.js')
                 <td><?=$sede->endereco->cidade->estado->nome?></td>
                 <td><?=$sede->endereco->cidade->estado->pai->nome?></td>
                 <td class="actions">
-                    <?= $this->Html->link('<i class="material-icons">mode_edit</i>', ['action' => 'edit', $sede->id],['data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Editar','class' => 'btn-floating tooltipped blue','escape' => false])?>
-                    <?= $this->Form->postLink('<i class="material-icons">delete</i>', ['action' => 'delete', $sede->id], ['data-position' => 'top','data-delay'=>'50','data-tooltip' =>'Excluir','class' => 'btn-floating tooltipped red','escape' => false,'confirm' =>'Tem certeza de que deseja excluir a sede '.$sede->nome.'?',]) ?>
+                    <?= $this->Html->link('<i class="material-icons">mode_edit</i>', ['action' => 'edit', $sede->id],['rel'=>"tooltip" ,'title'=>"Editar",'class' => 'btn-floating tooltipped blue','escape' => false])?>
+                    <?= $this->Form->postLink('<i class="material-icons">delete</i>', ['action' => 'delete', $sede->id], ['rel'=>"tooltip" ,'title'=>"Excluir",'class' => 'btn-floating tooltipped red','escape' => false,'confirm' =>'Tem certeza de que deseja excluir a sede '.$sede->nome.'?',]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -28,7 +28,7 @@
             <li><a href="#">HOME</a></li>
             <li><a href="#">PERFIL</a></li>
             <li><a href="#">DOAR</a></li>
-            <li><a href="#">LISTA DE DOAÇÃO</a></li>
+            <li><a href="#">LISTA DE DOAÇÕES</a></li>
             <li><a href="#">RELATÓRIOS</a></li>
             <li><a href="#">LOGOUT</a></li>
             <!-- <li class="dropdown">
@@ -69,43 +69,43 @@
       <div class="row">
 
 
-        <div class="col-sm-3">
+        <div class="col-sm-6">
           <div class="form-group is-empty">
              <?= $this->Form->control('nome',['class' => 'form-control','type' => 'text','escape' => false])?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="form-group is-empty">
              <?= $this->Form->control('telefone',['class' => 'validate form-control','type' => 'text'])?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <div class="form-group is-empty">
              <?= $this->Form->control('endereco.cep',['class' => 'validate form-control','type' => 'text'])?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="form-group is-empty">
             <?=$this->Form->control('endereco.logradouro', array('class' => 'validate form-control'));?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-6">
           <div class="form-group is-empty">
              <?=$this->Form->control('endereco.bairro', array('class' => 'validate form-control'));?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <div class="form-group is-empty">
              <?=$this->Form->control('endereco.numero', array('class' => 'validate form-control'));?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-12">
           <div class="form-group is-empty">
              <?=$this->Form->control('endereco.complemento', array('class' => 'validate form-control'));?>
           <span class="material-input"></span></div>
@@ -114,31 +114,34 @@
 
       <div class="row">
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
           <div class="form-group is-empty">
-            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'form-control browser-default validate','id' => 'select_pais','label' => false,'empty' => ' ']);
+          <label>País</label>
+            <?=$this->Form->select('endereco.cidade.estado.pais_id', $pais, ['class' => 'form-control browser-default validate','id' => 'select_pais','label' => false,'empty' => 'Selecione um país']);
             ?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
           <div class="form-group is-empty">
-            <?=$this->Form->select('endereco.cidade.estado_id',null,['class' => 'form-control browser-default validate','id' => 'select_estado','disabled' => true]);
+            <label>Estado</label>
+            <?=$this->Form->select('endereco.cidade.estado_id',null,['class' => 'form-control browser-default validate','id' => 'select_estado','disabled' => false,'empty' => 'Selecione um estado']);
             ?>
           <span class="material-input"></span></div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
           <div class="form-group is-empty">
-             <?=$this->Form->select('endereco.cidade_id', null, ['class' => ' form-control browser-default validate','id' => 'select_cidade','disabled' => true,'empty' => 'Selecione uma cidade']);
+            <label>Cidade</label>
+             <?=$this->Form->select('endereco.cidade_id', null, ['class' => ' form-control browser-default validate','id' => 'select_cidade','disabled' => false,'empty' => 'Selecione uma cidade']);
             ?>
           <span class="material-input"></span></div>
         </div>
 
       </div>
       <div class="row">
-        <?=$this->Html->Link('Voltar',['controller' => 'sedes','action' => 'index'],['class' => 'btn btn-danger'])?>
-         <?= $this->Form->button('Salvar <i class="material-icons right">send</i>',['class' => 'btn btn-success','id' => 'salvar_sede','type' => 'submit']) ?>
+        <?=$this->Html->Link('Voltar',['controller' => 'sedes','action' => 'index'],['class' => 'btn btn-primary'])?>
+         <?= $this->Form->button('Salvar <i class="material-icons right">send</i>',['class' => 'btn btn-primary','id' => 'salvar_sede','type' => 'submit']) ?>
       
       </div> 
    
