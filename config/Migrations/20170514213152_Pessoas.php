@@ -31,7 +31,7 @@ class Pessoas extends AbstractMigration
             ->addColumn('endereco_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [

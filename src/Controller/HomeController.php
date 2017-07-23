@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 /**
  * Categorias Controller
  *
@@ -9,13 +10,16 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Categoria[] paginate($object = null, array $settings = [])
  */
-class HomesController extends AppController
+class HomeController extends AppController
 {
+	public function beforeFilter(Event $event)
+	{
+	    parent::beforeFilter($event);
+	   	$this->Auth->allow(['index']);
+	}
 
-
-	public function index(){
-
+	public function index()
+	{
 		
-
 	}
 }

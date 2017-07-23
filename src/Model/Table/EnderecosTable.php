@@ -56,34 +56,34 @@ class EnderecosTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+    // public function validationDefault(Validator $validator)
+    // {
+    //     $validator
+    //         ->integer('id')
+    //         ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('logradouro', 'create')
-            ->notEmpty('logradouro');
+    //     $validator
+    //         ->requirePresence('logradouro', 'create')
+    //         ->notEmpty('logradouro');
 
-        $validator
-            ->requirePresence('cep', 'create')
-            ->notEmpty('cep');
+    //     $validator
+    //         ->requirePresence('cep', 'create')
+    //         ->notEmpty('cep');
 
-        $validator
-            ->requirePresence('bairro', 'create')
-            ->notEmpty('bairro');
+    //     $validator
+    //         ->requirePresence('bairro', 'create')
+    //         ->notEmpty('bairro');
 
-        $validator
-            ->allowEmpty('complemento');
+    //     $validator
+    //         ->allowEmpty('complemento');
 
-        $validator
-            ->integer('numero')
-            ->requirePresence('numero', 'create')
-            ->notEmpty('numero');
+    //     $validator
+    //         ->integer('numero')
+    //         ->requirePresence('numero', 'create')
+    //         ->notEmpty('numero');
             
-        return $validator;
-    }
+    //     return $validator;
+    // }
 
     /**
      * Returns a rules checker object that will be used for validating

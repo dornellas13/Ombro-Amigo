@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */    
         /* Renderização de scripts */
-
+        echo $this->Html->script('App/enderecos.js');
         echo $this->Html->script('App/sedes.js');
         echo $this->Html->css('demo.css');
 ?>

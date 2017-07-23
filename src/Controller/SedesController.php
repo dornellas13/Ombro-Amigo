@@ -123,22 +123,4 @@ class SedesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
-    public function getEstadoByPais($id_pais){
-        $estados = $this->Sedes->Enderecos->Cidades->Estados->find('list',['keyField' => 'id','valueField' => 'nome','conditions' => ['pais_id' => $id_pais]]);
-        $processar = !$estados->count() > 0 ? false : true;
-        $result = array('processar' => $processar,'arrayComboBox' => $estados);
-        $this->response->type('json');
-        $this->response->body(json_encode($result));
-        return $this->response;
-    }
-
-    public function getCidadeByEstado($id_estado){
-        $cidades = $this->Sedes->Enderecos->Cidades->find('list',['keyField' => 'id','valueField' => 'nome','conditions' => ['estado_id' => $id_estado]]);
-        $processar = !$cidades->count() > 0 ? false : true;
-        $result = array('processar' => $processar,'arrayComboBox' => $cidades);
-        $this->response->type('json');
-        $this->response->body(json_encode($result));
-        return $this->response;
-    }
 }

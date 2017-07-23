@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -43,6 +44,29 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+                // 'plugin' => 'Users'
+            ],
+            'authError' => 'Você realmente pensou que você pode ver isso?',
+            'loginRedirect' => [
+                'controller' => 'timeline',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'home',
+                'action' => 'index'
+            ],
+            'storage' => 'Session'
+        ]);
+       
+        // $TableUsers = TableRegistry::get('Users');
+        // $UsuarioLogado = $TableUsers->get($this->request->session()->read('Auth.User.pessoa_id'), [
+        //     'contain' => ['Pessoas']
+        // ]);
+        // $this->set('UsuarioLogado',$UsuarioLogado);
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -60,6 +84,7 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
@@ -69,8 +94,9 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-         parent::beforeFilter($event);
-
+        parent::beforeFilter($event);
+        // Métodos que estão liberados para todos visualizarem.
+         
          // Carregar tabelas a serem utilizadas com o 'Elastic Search'
          // Carrega o Type usando o provedor 'Elastic'
          $this->loadModel('Categorias', 'Elastic');

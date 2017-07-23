@@ -26,7 +26,14 @@
         <?= $this->Html->script('nouislider.min.js') ?>
         <?= $this->Html->script('bootstrap-datepicker.js') ?>
         <?= $this->Html->script('material-kit.js') ?>
+        <?= $this->Html->script('jquery.form.js') ?>
         
+        <!-- ChartJs -->
+        <?= $this->Html->script('ChartJs/Chart.bundle.min.js') ?>
+        <?= $this->Html->script('ChartJs/Chart.min.js') ?>
+
+        
+
         <!-- Jquery-validation-1.16.0 -->
         <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
 
@@ -59,13 +66,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://www.creative-tim.com">
+            <a href="/">
                 <div class="logo-container">
                     <div class="logo">
-                        <img src="img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+                        <img src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
                     </div>
                     <div class="brand">
-                        Logotipo
+                        Ombro Amigo
                     </div>
 
 
@@ -76,14 +83,11 @@
         <div class="collapse navbar-collapse" id="navigation-index">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" target="_blank">
-                        <i class="material-icons">lock_outline</i> LOGIN
-                    </a>
+                     <?=$this->Html->link('<i class="material-icons">lock_outline</i> Entrar',['controller' => 'users','action' => 'login'],['escape' => false])?>
                 </li>
                 <li>
-                    <a href="#" target="_blank">
-                        <i class="material-icons">exit_to_app</i> Sing-UP
-                    </a>
+                    <?=$this->Html->link('<i class="material-icons">exit_to_app</i> Registrar-se',['controller' => 'users','action' => 'add'],['escape' => false])?>
+                
                 </li>
                 <li>
                     <a rel="tooltip" title="Siga-nos no Twitter" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
@@ -108,7 +112,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('img/bg2.jpeg');">
+    <div class="header header-filter" style="background-image: url('/img/bg2.jpeg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -1368,7 +1372,7 @@
                 </ul>
             </nav>
             <div class="copyright pull-right">
-                &copy; 2017, OMBRO-AMIGO<i class="material-icons">favorite</i> Sorftware Social.
+                &copy; 2017, OMBRO-AMIGO<i class="material-icons">favorite</i> Software Social.
             </div>
         </div>
     </footer>
@@ -1382,22 +1386,18 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <i class="material-icons">clear</i>
                 </button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-                </p>
+               
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-simple">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
+               
             </div>
         </div>
     </div>
 </div>
 <!--  End Modal -->
-
-
 </body>
     <!--   Core JS Files   -->
   
@@ -1405,9 +1405,9 @@
 
     <script type="text/javascript">
 
-        $().ready(function(){
+        $(document).ready(function(){
             // the body of this function is in assets/material-kit.js
-            materialKit.initSliders();
+            // materialKit.initSliders();
             window_width = $(window).width();
 
             if (window_width >= 992){
@@ -1417,6 +1417,9 @@
             }
 
         });
+
     </script>
+    
+
 </html>
 

@@ -32,7 +32,7 @@ class Users extends AbstractMigration
             ->addColumn('perfil_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [

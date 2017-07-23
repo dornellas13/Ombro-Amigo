@@ -53,13 +53,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://www.creative-tim.com">
+            <a href="/">
                 <div class="logo-container">
                     <div class="logo">
                         <img src="../img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
                     </div>
                     <div class="brand">
-                        Logotipo
+                        Ombro Amigo
                     </div>
 
 
@@ -70,9 +70,7 @@
         <div class="collapse navbar-collapse" id="navigation-index">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" target="_blank">
-                        <i class="material-icons">highlight_off</i> Logout
-                    </a>
+                     <?=$this->Html->link('<i class="material-icons">highlight_off</i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
                 </li>
                 <li>
                     <a rel="tooltip" title="Siga-nos no Twitter" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
@@ -103,7 +101,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="brand">
                         <h1><B></B></h1>
-                        <h2>Bem vindo Felipe Piconi</h2>
+                        <h2>Bem vindo Felipe Piconi<!-- <?=$UsuarioLogado->pessoa->nome_razao_social?> --></h2>
                     </div>
                 </div>
             </div>
