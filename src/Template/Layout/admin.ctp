@@ -101,7 +101,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="brand">
                         <h1><B></B></h1>
-                        <h2>Bem vindo Felipe Piconi<!-- <?=$UsuarioLogado->pessoa->nome_razao_social?> --></h2>
+                        <h2>Bem vindo <?=$UsuarioLogado->pessoa->nome_razao_social?></h2>
                     </div>
                 </div>
             </div>

@@ -28,6 +28,29 @@ use Cake\ORM\TableRegistry;
  */
 class AppController extends Controller
 {
+    private function AutenticacaoUsuario()
+    {
+        $idUsuarioLogado = $this->request->session()->read('Auth.User.id');
+        if(!empty($idUsuarioLogado)){
+            $TableUsers = TableRegistry::get('Users');
+            $UsuarioLogado = $TableUsers->get($idUsuarioLogado, [
+            'contain' => ['Pessoas']
+            ]);
+            $this->set('UsuarioLogado',$UsuarioLogado);
+        }
+    }
+
+    public function GetInformacoesUsuarioLogado()
+    {
+        $TableUsers = TableRegistry::get('Users');
+        $idUsuarioLogado = $this->request->session()->read('Auth.User.id');
+        $UsuarioLogado = $TableUsers->get($idUsuarioLogado, [
+            'contain' => ['Pessoas','Pessoas.Doacoes','Pessoas.Solicitacoes','Pessoas.Doacoes.ProdutosDoacoes','Pessoas.Solicitacoes.ProdutosSolicitacoes','Pessoas.Enderecos','Pessoas.Enderecos.Cidades','Pessoas.Enderecos.Cidades.Estados','Pessoas.Enderecos.Cidades.Estados.Pais','Pessoas.Solicitacoes.ProdutosSolicitacoes.Categorias','Pessoas.Doacoes.ProdutosDoacoes.Categorias']
+            ]);
+        return $UsuarioLogado;
+    }
+
+
 
     /**
      * Initialization hook method.
@@ -41,6 +64,8 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
+
+        $this->AutenticacaoUsuario();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
@@ -61,13 +86,8 @@ class AppController extends Controller
             ],
             'storage' => 'Session'
         ]);
-       
-        // $TableUsers = TableRegistry::get('Users');
-        // $UsuarioLogado = $TableUsers->get($this->request->session()->read('Auth.User.pessoa_id'), [
-        //     'contain' => ['Pessoas']
-        // ]);
-        // $this->set('UsuarioLogado',$UsuarioLogado);
 
+        
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
