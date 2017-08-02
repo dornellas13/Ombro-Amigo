@@ -73,7 +73,7 @@ class AppController extends Controller
 
          // Carregar tabelas a serem utilizadas com o 'Elastic Search'
          // Carrega o Type usando o provedor 'Elastic'
-         $this->loadModel('Categorias', 'Elastic');
+         //$this->loadModel('Categorias', 'Elastic');
          //$this->loadModel('Solicitacoes','Elastic');
          //$this->loadModel('Doacoes','Elastic');
 

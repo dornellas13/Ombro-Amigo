@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\ProdutosDoaco $produtosDoaco
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="col s12 m4 l3" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Produtos Doaco'), ['action' => 'edit', $produtosDoaco->id]) ?> </li>
@@ -15,11 +15,11 @@
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="produtosDoacoes view large-9 medium-8 columns content">
+<div class="produtosDoacoes view col s12 m4 l3">
     <h3><?= h($produtosDoaco->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Descricao') ?></th>
+            <th scope="row"><?= __('Descrição') ?></th>
             <td><?= h($produtosDoaco->descricao) ?></td>
         </tr>
         <tr>
