@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="col s12 m4 l3" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Categoria'), ['action' => 'edit', $categoria->id]) ?> </li>
@@ -14,7 +14,7 @@
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="categorias view large-9 medium-8 columns content">
+<div class="categorias view col s12 m4 l3">
     <h3><?= h($categoria->id) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -27,7 +27,7 @@
         </tr>
     </table>
     <div class="related">
-        <h4><?= __('Related Produtos') ?></h4>
+        <h4><?= __('Dados do Produto') ?></h4>
         <?php if (!empty($categoria->produtos)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>

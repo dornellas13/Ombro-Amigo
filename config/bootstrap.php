@@ -226,8 +226,17 @@ if (Configure::read('debug')) {
 */
 
 /* CakePHP Acl Plugin */
+
+if (Configure::read('debug')) {
+    Plugin::load('DebugKit', ['bootstrap' => true]);
+}
 Plugin::load('Acl', ['bootstrap' => true]);
 
-/* Elastic Search(Apache Lucene)*/
-Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
 
+
+ Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
+/* Elastic Search(Apache Lucene)*/
+/*Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
+
+
+Plugin::load('elasticsearch');*/

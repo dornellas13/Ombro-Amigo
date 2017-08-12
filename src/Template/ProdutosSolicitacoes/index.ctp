@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\ProdutosSolicitaco[]|\Cake\Collection\CollectionInterface $produtosSolicitacoes
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="col s12 m4 l3" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Produtos Solicitaco'), ['action' => 'add']) ?></li>
@@ -12,8 +12,8 @@
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="produtosSolicitacoes index large-9 medium-8 columns content">
-    <h3><?= __('Produtos Solicitacoes') ?></h3>
+<div class="produtosSolicitacoes index col s12 m4 l3">
+    <h3><?= __('Solicitações') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -21,7 +21,7 @@
                 <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('quantidade') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('categoria_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Ações') ?></th>
             </tr>
         </thead>
         <tbody>
