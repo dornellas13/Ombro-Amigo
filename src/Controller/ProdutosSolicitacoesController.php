@@ -20,6 +20,7 @@ class ProdutosSolicitacoesController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Categorias']
         ];
@@ -63,7 +64,7 @@ class ProdutosSolicitacoesController extends AppController
             }
             $this->Flash->error(__('The produtos solicitaco could not be saved. Please, try again.'));
         }
-        $categorias = $this->ProdutosSolicitacoes->Categorias->find('list', ['limit' => 200]);
+        $categorias = $this->ProdutosSolicitacoes->Categorias->find('list', ['keyField' => 'id','valueField' => 'nome','limit' => 200]);
         $this->set(compact('produtosSolicitaco', 'categorias'));
         $this->set('_serialize', ['produtosSolicitaco']);
     }

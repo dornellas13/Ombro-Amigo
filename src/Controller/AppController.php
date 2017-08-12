@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -27,6 +28,29 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+    private function AutenticacaoUsuario()
+    {
+        $idUsuarioLogado = $this->request->session()->read('Auth.User.id');
+        if(!empty($idUsuarioLogado)){
+            $TableUsers = TableRegistry::get('Users');
+            $UsuarioLogado = $TableUsers->get($idUsuarioLogado, [
+            'contain' => ['Pessoas']
+            ]);
+            $this->set('UsuarioLogado',$UsuarioLogado);
+        }
+    }
+
+    public function GetInformacoesUsuarioLogado()
+    {
+        $TableUsers = TableRegistry::get('Users');
+        $idUsuarioLogado = $this->request->session()->read('Auth.User.id');
+        $UsuarioLogado = $TableUsers->get($idUsuarioLogado, [
+            'contain' => ['Pessoas','Pessoas.Doacoes','Pessoas.Solicitacoes','Pessoas.Doacoes.ProdutosDoacoes','Pessoas.Solicitacoes.ProdutosSolicitacoes','Pessoas.Enderecos','Pessoas.Enderecos.Cidades','Pessoas.Enderecos.Cidades.Estados','Pessoas.Enderecos.Cidades.Estados.Pais','Pessoas.Solicitacoes.ProdutosSolicitacoes.Categorias','Pessoas.Doacoes.ProdutosDoacoes.Categorias']
+            ]);
+        return $UsuarioLogado;
+    }
+
+
 
     /**
      * Initialization hook method.
@@ -41,9 +65,29 @@ class AppController extends Controller
     {
         parent::initialize();
 
+        $this->AutenticacaoUsuario();
+
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+                // 'plugin' => 'Users'
+            ],
+            'authError' => 'Você realmente pensou que você pode ver isso?',
+            'loginRedirect' => [
+                'controller' => 'timeline',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'home',
+                'action' => 'index'
+            ],
+            'storage' => 'Session'
+        ]);
 
+        
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
@@ -60,6 +104,7 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
@@ -69,8 +114,9 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-         parent::beforeFilter($event);
-
+        parent::beforeFilter($event);
+        // Métodos que estão liberados para todos visualizarem.
+         
          // Carregar tabelas a serem utilizadas com o 'Elastic Search'
          // Carrega o Type usando o provedor 'Elastic'
          //$this->loadModel('Categorias', 'Elastic');

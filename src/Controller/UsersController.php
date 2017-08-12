@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,11 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['add','logout']);
+    }
 
     /**
      * Index method
@@ -63,9 +69,8 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Users->Pessoas->find('list', ['limit' => 200]);
-        $perfis = $this->Users->Perfis->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'pessoas', 'perfis'));
+        $pais = $this->Users->Pessoas->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
+        $this->set(compact('user', 'pais'));
         $this->set('_serialize', ['user']);
     }
 
@@ -114,5 +119,23 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function login(){
+        if ($this->request->is('post')) {
+             $user = $this->Auth->identify();
+             if ($user) {
+                 $this->Auth->setUser($user);
+                 return $this->redirect($this->Auth->redirectUrl());
+             } else {
+                 $this->Flash->error(__('Username or password is incorrect'));
+             }
+         }
+    }
+
+    public function logout()
+    {
+            $this->request->session()->destroy();
+            return $this->redirect($this->Auth->logout());
     }
 }

@@ -16,17 +16,17 @@ class Enderecos extends AbstractMigration
             ->addColumn('logradouro', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('bairro', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
             ])
             -> addColumn('cep','string',[
                 'default' => 'null',
                 'limit' => 255,
-                'null' => false
+                'null' => true
             ])
             ->addColumn('complemento', 'string', [
                 'default' => null,
@@ -36,12 +36,12 @@ class Enderecos extends AbstractMigration
             ->addColumn('numero', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('cidade_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [
