@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Doacoes Model
  *
  * @property \App\Model\Table\PessoasTable|\Cake\ORM\Association\BelongsTo $Pessoas
- * @property |\Cake\ORM\Association\BelongsTo $ProdutosDoacoes
+ * @property |\Cake\ORM\Association\BelongsTo $Categorias
  *
  * @method \App\Model\Entity\Doaco get($primaryKey, $options = [])
  * @method \App\Model\Entity\Doaco newEntity($data = null, array $options = [])
@@ -45,8 +45,8 @@ class DoacoesTable extends Table
             'foreignKey' => 'pessoa_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ProdutosDoacoes', [
-            'foreignKey' => 'produtos_doacoes_id',
+        $this->belongsTo('Categorias', [
+            'foreignKey' => 'categoria_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -63,6 +63,18 @@ class DoacoesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator
+            ->allowEmpty('descricao');
+
+        $validator
+            ->integer('quantidade')
+            ->allowEmpty('quantidade');
+
+        $validator
+            ->boolean('flg_ativo')
+            ->requirePresence('flg_ativo', 'create')
+            ->notEmpty('flg_ativo');
+
         return $validator;
     }
 
@@ -76,7 +88,7 @@ class DoacoesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['pessoa_id'], 'Pessoas'));
-        $rules->add($rules->existsIn(['produtos_doacoes_id'], 'ProdutosDoacoes'));
+        $rules->add($rules->existsIn(['categoria_id'], 'Categorias'));
 
         return $rules;
     }

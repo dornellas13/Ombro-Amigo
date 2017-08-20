@@ -28,29 +28,52 @@ class Doacoes extends AbstractMigration
     public function change()
     {
         $this->table('doacoes')
-            ->addColumn('created', 'datetime', [
+            ->addColumn('descricao', 'string', [
                 'default' => null,
-                'limit' => null,
+                'limit' => 255,
                 'null' => true,
+            ])
+            ->addColumn('quantidade', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('flg_ativo', 'boolean', [
+                'default' => true,
+                'null' => false,
             ])
             ->addColumn('pessoa_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('produtos_doacoes_id', 'integer', [
+            ->addColumn('categoria_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addIndex(
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+             ->addIndex(
                 [
                     'pessoa_id',
                 ]
             )
             ->addIndex(
                 [
-                    'produtos_doacoes_id',
+                    'categoria_id',
+                ]
+            )
+            ->addForeignKey(
+                'categoria_id',
+                'categorias',
+                'id',
+                [
+                    'update' => 'CASCADE',
+                    'delete' => 'RESTRICT'
                 ]
             )
              ->addForeignKey(
@@ -61,18 +84,7 @@ class Doacoes extends AbstractMigration
                     'update' => 'CASCADE',
                     'delete' => 'RESTRICT'
                 ]
-            )
-            ->addForeignKey(
-                'produtos_doacoes_id',
-                'produtos_doacoes',
-                'id',
-                [
-                    'update' => 'CASCADE',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-
-            ->create();
+            )->create();
 
     }
 }

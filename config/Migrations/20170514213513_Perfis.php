@@ -18,6 +18,10 @@ class Perfis extends AbstractMigration
                 'limit' => 255,
                 'null' => false,
             ])
+            ->addColumn('flg_ativo', 'boolean', [
+                'default' => true,
+                'null' => false,
+            ])
             ->create();
 
     }

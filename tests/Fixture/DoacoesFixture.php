@@ -18,17 +18,20 @@ class DoacoesFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'descricao' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'quantidade' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'flg_ativo' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '1', 'comment' => '', 'precision' => null],
         'pessoa_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'produtos_doacoes_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'categoria_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
             'pessoa_id' => ['type' => 'index', 'columns' => ['pessoa_id'], 'length' => []],
-            'produtos_doacoes_id' => ['type' => 'index', 'columns' => ['produtos_doacoes_id'], 'length' => []],
+            'categoria_id' => ['type' => 'index', 'columns' => ['categoria_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'doacoes_ibfk_1' => ['type' => 'foreign', 'columns' => ['pessoa_id'], 'references' => ['pessoas', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
-            'doacoes_ibfk_2' => ['type' => 'foreign', 'columns' => ['produtos_doacoes_id'], 'references' => ['produtos_doacoes', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
+            'doacoes_ibfk_1' => ['type' => 'foreign', 'columns' => ['categoria_id'], 'references' => ['categorias', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
+            'doacoes_ibfk_2' => ['type' => 'foreign', 'columns' => ['pessoa_id'], 'references' => ['pessoas', 'id'], 'update' => 'cascade', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -45,9 +48,12 @@ class DoacoesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'created' => '2017-07-15 17:42:54',
+            'descricao' => 'Lorem ipsum dolor sit amet',
+            'quantidade' => 1,
+            'flg_ativo' => 1,
             'pessoa_id' => 1,
-            'produtos_doacoes_id' => 1
+            'categoria_id' => 1,
+            'created' => '2017-08-16 23:14:42'
         ],
     ];
 }

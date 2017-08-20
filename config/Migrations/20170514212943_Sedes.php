@@ -29,6 +29,10 @@ class Sedes extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
+            ->addColumn('flg_ativo', 'boolean', [
+                'default' => true,
+                'null' => false,
+            ])
             ->addIndex(
                 [
                     'endereco_id',

@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class PerfisController extends AppController
 {
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->layout('admin'); 
+    }
 
     /**
      * Index method

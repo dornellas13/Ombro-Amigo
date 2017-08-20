@@ -1,55 +1,34 @@
 <?php
 /**
   * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Solicitaco[]|\Cake\Collection\CollectionInterface $solicitacoes
+  * @var \App\Model\Entity\Doaco[]|\Cake\Collection\CollectionInterface $solicitacoes
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Solicitaco'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos Solicitacoes'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produtos Solicitaco'), ['controller' => 'ProdutosSolicitacoes', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="solicitacoes index large-9 medium-8 columns content">
-    <h3><?= __('Solicitacoes') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<div class="doacoes index large-9 medium-8 columns content">
+    <h3><?= __('Solicitacões') ?></h3>
+    <table cellpadding="0" cellspacing="0" class="table" data-datatable="true">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pessoa_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('produtos_solicitacoes_id') ?></th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Quantidade</th>
+                <th>Categoria</th>
+                <th scope="col">Criação</th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($solicitacoes as $solicitaco): ?>
+            <?php foreach ($solicitacoes as $solicitacao): ?>
             <tr>
-                <td><?= $this->Number->format($solicitaco->id) ?></td>
-                <td><?= h($solicitaco->created) ?></td>
-                <td><?= $solicitaco->has('pessoa') ? $this->Html->link($solicitaco->pessoa->id, ['controller' => 'Pessoas', 'action' => 'view', $solicitaco->pessoa->id]) : '' ?></td>
-                <td><?= $solicitaco->has('produtos_solicitaco') ? $this->Html->link($solicitaco->produtos_solicitaco->id, ['controller' => 'ProdutosSolicitacoes', 'action' => 'view', $solicitaco->produtos_solicitaco->id]) : '' ?></td>
+                <td><?= h($solicitacao->descricao) ?></td>
+                <td><?= $this->Number->format($solicitacao->quantidade) ?></td>
+                <td><?= $solicitacao->categoria['nome'] ?></td>
+                <td><?= h($solicitacao->created) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $solicitaco->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $solicitaco->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $solicitaco->id], ['confirm' => __('Are you sure you want to delete # {0}?', $solicitaco->id)]) ?>
+                     <?= $this->Html->link('<i class="material-icons">mode_edit</i>', ['action' => 'edit', $solicitacao->id],['rel'=>"tooltip" ,'title'=>"Editar",'class' => 'btn-floating tooltipped blue','escape' => false])?>
+                    <?= $this->Form->postLink('<i class="material-icons">delete</i>', ['action' => 'delete', $solicitacao->id], ['rel'=>"tooltip" ,'title'=>"Excluir",'class' => 'btn-floating tooltipped red','escape' => false,'confirm' =>'Tem certeza de que deseja excluir este registro?',]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
 </div>

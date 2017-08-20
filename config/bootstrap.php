@@ -240,3 +240,7 @@ Plugin::load('Acl', ['bootstrap' => true]);
 
 
 Plugin::load('elasticsearch');*/
+
+Plugin::load('Elasticsearch', ['bootstrap' => false, 'routes' => true]);
+
+Plugin::load('Elasticsearch', ['bootstrap' => false, 'routes' => true]);

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Sedes Controller
@@ -11,7 +12,11 @@ use App\Controller\AppController;
  */
 class SedesController extends AppController
 {
-
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->layout('admin'); 
+    }
     /**
      * Index method
      *
@@ -21,6 +26,7 @@ class SedesController extends AppController
     {
         $this->viewBuilder()->layout('admin');
         $this->paginate = [
+            'conditions' => ['Sedes.flg_ativo' => true],
             'contain' => ['Enderecos','Enderecos.Cidades','Enderecos.Cidades','Enderecos.Cidades.Estados','Enderecos.Cidades.Estados.Pais'],
             'limit' => 5,
             'order' => ['Sedes.nome' => 'asc']
@@ -115,7 +121,8 @@ class SedesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $sede = $this->Sedes->get($id);
-        if ($this->Sedes->delete($sede)) {
+        $sede->flg_ativo = false;
+        if ($this->Sedes->save($sede)) {
             $this->Flash->success(__('The sede has been deleted.'));
         } else {
             $this->Flash->error(__('The sede could not be deleted. Please, try again.'));

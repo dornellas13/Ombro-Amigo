@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.material.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
 
         <!-- JAVASCRIPT FILES -->
         <?= $this->Html->script('jquery-3.2.1.js') ?>
@@ -23,7 +25,9 @@
         <?= $this->Html->script('nouislider.min.js') ?>
         <?= $this->Html->script('bootstrap-datepicker.js') ?>
         <?= $this->Html->script('material-kit.js') ?>
-
+          <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
+        <?= $this->Html->script('App/DataTableHelper.js') ?>
         <!-- Jquery-validation-1.16.0 -->
         <?= $this->Html->script('Validate/jquery.validate.min.js') ?>
     <!-- CSS Files -->
@@ -69,10 +73,61 @@
 
         <div class="collapse navbar-collapse" id="navigation-index">
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                      <i class="fa fa-heart"></i>
+                      <span class="label label-primary"><?=$resultDoacoes['Total']?></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">Possíveis Doações para hoje
+                    </li>
+                        <?php 
+                            foreach ($resultDoacoes['Combinacoes'] as $result) {
+                        ?>
+                            <li class="dropdown-content">
+                                <label>
+                                    <small>
+                                        Descrição:  <?=$result->descricao?>
+                                        <br>
+                                        Solicitante: <?=$result->pessoa['nome']?>
+                                        <br>
+                                        Categoria: <?=$result->categoria['nome']?>
+                                    </small>     
+                                </label>
+                            </li>
+                            
+                        <?php
+                            }
+                        ?>
+                    
+                        <li class="divider"></li>
+                        <li><a href="#">Verificar Todas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                      <i class="fa fa-gift"></i>
+                      <span class="label label-primary">5</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-header">Possíveis Solicitações para hoje</li>
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Verificar Todas</a></li>
+                    </ul>
+                </li>
+               
                 <li>
-                     <?=$this->Html->link('<i class="material-icons">highlight_off</i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
+                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'perfil'],['escape' => false])?>
                 </li>
                 <li>
+                     <?=$this->Html->link('<i class="fa fa-sign-out"></i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
+                </li>
+
+
+                <!-- <li>
                     <a rel="tooltip" title="Siga-nos no Twitter" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
                         <i class="fa fa-twitter"></i>
                     </a>
@@ -86,9 +141,10 @@
                     <a rel="tooltip" title="Sina-nos no Instagram" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
                         <i class="fa fa-instagram"></i>
                     </a>
-                </li>
+                </li> -->
 
             </ul>
+
         </div>
     </div>
 </nav>
@@ -1354,7 +1410,7 @@
                 </ul>
             </nav>
             <div class="copyright pull-right">
-                &copy; 2017, OMBRO-AMIGO<i class="material-icons">favorite</i> Sorftware Social.
+                &copy; 2017, OMBRO-AMIGO <i class="material-icons">favorite</i> Software Social.
             </div>
         </div>
     </footer>
@@ -1390,6 +1446,14 @@
     <script type="text/javascript">
 
         $().ready(function(){
+
+            //Cuidado não apagar, essa função aplica DataTable em todas telas que existem tabelas.
+            if($("table").length > 0){
+                var datatable = new DataTableHelper();
+                datatable.CarregaDataTable();
+            }
+
+
             // the body of this function is in assets/material-kit.js
             materialKit.initSliders();
             window_width = $(window).width();
@@ -1399,6 +1463,7 @@
 
                 $(window).on('scroll', materialKitDemo.checkScrollForParallax);
             }
+            
 
         });
     </script>

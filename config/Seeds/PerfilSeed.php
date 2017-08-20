@@ -18,7 +18,7 @@ class PerfilSeed extends AbstractSeed
      */
     public function run()
     {
-        $data = ['id' => '1','nome' => 'Comum'];
+        $data = ['id' => '1','nome' => 'Comum','flg_ativo' => true];
 
         $table = $this->table('perfis');
         $table->insert($data)->save();

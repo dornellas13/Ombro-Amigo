@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+
 
 /**
  * Doacoes Controller
@@ -12,6 +15,11 @@ use App\Controller\AppController;
  */
 class DoacoesController extends AppController
 {
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->layout('admin'); 
+    }
 
     /**
      * Index method
@@ -20,14 +28,8 @@ class DoacoesController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->layout('admin');
-        $this->paginate = [
-            'contain' => ['Pessoas', 'ProdutosDoacoes']
-        ];
-        $doacoes = $this->paginate($this->Doacoes);
-
-        $this->set(compact('doacoes'));
-        $this->set('_serialize', ['doacoes']);
+        $doacoes = $this->Doacoes->find();
+        $this->set('doacoes',$doacoes);
     }
 
     /**
@@ -39,11 +41,11 @@ class DoacoesController extends AppController
      */
     public function view($id = null)
     {
-        $doaco = $this->Doacoes->get($id, [
+        $doacao = $this->Doacoes->get($id, [
             'contain' => ['Pessoas', 'ProdutosDoacoes']
         ]);
 
-        $this->set('doaco', $doaco);
+        $this->set('doaco', $doacao);
         $this->set('_serialize', ['doaco']);
     }
 
@@ -54,20 +56,39 @@ class DoacoesController extends AppController
      */
     public function add()
     {
-        $doaco = $this->Doacoes->newEntity();
+        $doacao = $this->Doacoes->newEntity();
         if ($this->request->is('post')) {
-            $doaco = $this->Doacoes->patchEntity($doaco, $this->request->getData());
-            if ($this->Doacoes->save($doaco)) {
+            $response = $this->request->getData();
+            $usuario = $this->GetUsuarioLogado();
+            $request = array(
+                'descricao' => $response['descricao'],
+                'quantidade' => $response['quantidade'],
+                'flg_ativo' => true,
+                'categoria' => array(
+                    'id' =>  $response['categoria_id'],
+                    'nome' => $response['nome_categoria'] 
+                ),
+                'pessoa' => array(
+                    'id' => $usuario->pessoa->id,
+                    'nome' => $usuario->pessoa->nome_razao_social 
+                ),
+                "created" => date('d/m/Y')
+            );
+
+            $doacao = $this->Doacoes->patchEntity($doacao,$request);
+            if ($this->Doacoes->save($doacao)) {
                 $this->Flash->success(__('The doaco has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Doacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtosDoacoes = $this->Doacoes->ProdutosDoacoes->find('list', ['limit' => 200]);
-        $this->set(compact('doaco', 'pessoas', 'produtosDoacoes'));
-        $this->set('_serialize', ['doaco']);
+        
+        $TableCategorias = TableRegistry::get('Categorias');
+        $categorias = $TableCategorias->find('list',['conditions' => ['flg_ativo'=>true],'keyField' => 'id','valueField' => 'nome']);
+    
+        $this->set(compact('doacao', 'categorias'));
+        $this->set('_serialize', ['doacao']);
     }
 
     /**
@@ -79,22 +100,35 @@ class DoacoesController extends AppController
      */
     public function edit($id = null)
     {
-        $doaco = $this->Doacoes->get($id, [
-            'contain' => []
-        ]);
+        $doacao = $this->Doacoes->get($id);
+        $doacao->categoria_id = $doacao->categoria['id'];
+        $doacao->nome_categoria = $doacao->categoria['nome'];
+
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $doaco = $this->Doacoes->patchEntity($doaco, $this->request->getData());
-            if ($this->Doacoes->save($doaco)) {
+            $response = $this->request->getData();
+            $d = $this->Doacoes->get($id);
+            $request = array(
+                'descricao' => $response['descricao'],
+                'quantidade' => $response['quantidade'],
+                'flg_ativo' => true,
+                'categoria' => array(
+                    'id' =>  $response['categoria_id'],
+                    'nome' => $response['nome_categoria'] 
+                )
+            );
+            $doacao = $this->Doacoes->patchEntity($d, $request);
+            if ($this->Doacoes->save($doacao)) {
                 $this->Flash->success(__('The doaco has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' =>'doacoes' ,'action' => 'index']);
             }
             $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Doacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtosDoacoes = $this->Doacoes->ProdutosDoacoes->find('list', ['limit' => 200]);
-        $this->set(compact('doaco', 'pessoas', 'produtosDoacoes'));
-        $this->set('_serialize', ['doaco']);
+        $TableCategorias = TableRegistry::get('Categorias');
+        $categorias = $TableCategorias->find('list',['conditions' => ['flg_ativo'=>true],'keyField' => 'id','valueField' => 'nome']);
+       
+        $this->set(compact('doacao','categorias'));
+        $this->set('_serialize', ['doacao']);
     }
 
     /**
@@ -107,8 +141,9 @@ class DoacoesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $doaco = $this->Doacoes->get($id);
-        if ($this->Doacoes->delete($doaco)) {
+        $doacao = $this->Doacoes->get($id);
+        $doacao->flg_ativo = false;
+        if ($this->Doacoes->save($doacao)) {
             $this->Flash->success(__('The doaco has been deleted.'));
         } else {
             $this->Flash->error(__('The doaco could not be deleted. Please, try again.'));

@@ -36,7 +36,8 @@ class DoacoesTableTest extends TestCase
         'app.categorias',
         'app.produtos',
         'app.users',
-        'app.perfis'
+        'app.perfis',
+        'app.produtos_doacoes'
     ];
 
     /**

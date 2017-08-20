@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 /**
  * Categorias Controller
  *
@@ -11,6 +12,11 @@ use App\Controller\AppController;
  */
 class CategoriasController extends AppController
 {
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->layout('admin'); 
+    }
 
     /**
      * Index method
@@ -19,9 +25,8 @@ class CategoriasController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->layout('admin');
-        $categorias = $this->paginate($this->Categorias);
-        $this->set(compact('categorias'));
+        $categorias = $this->Categorias->find('all',['conditions' => ['flg_ativo' => true]]);
+        $this->set('categorias',$categorias);
         $this->set('_serialize', ['categorias']);
     }
 
@@ -49,7 +54,7 @@ class CategoriasController extends AppController
         $categoria = $this->Categorias->newEntity();
           if ($this->request->is('post')) {
               $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
-
+              $categoria->flg_ativo = true;
               if ($this->Categorias->save($categoria)) {
                   $this->Flash->success('Documento salvo com sucesso!');
                    return $this->redirect(['action' => 'index']);
@@ -94,7 +99,8 @@ class CategoriasController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $categoria = $this->Categorias->get($id);
-        if ($this->Categorias->delete($categoria)) {
+        $categoria->flg_ativo = false;
+        if ($this->Categorias->save($categoria)) {
             $this->Flash->success(__('The categoria has been deleted.'));
         } else {
             $this->Flash->error(__('The categoria could not be deleted. Please, try again.'));

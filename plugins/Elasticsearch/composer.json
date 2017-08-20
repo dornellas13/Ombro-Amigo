@@ -1,0 +1,22 @@
+{
+    "name": "your-name-here/Elasticsearch",
+    "description": "Elasticsearch plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "require": {
+        "cakephp/cakephp": "^3.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7|^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elasticsearch\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elasticsearch\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}

@@ -27,30 +27,53 @@ class Solicitacoes extends AbstractMigration
      */
     public function change()
     {
-         $this->table('solicitacoes')
-            ->addColumn('created', 'datetime', [
+        $this->table('solicitacoes')
+            ->addColumn('descricao', 'string', [
                 'default' => null,
-                'limit' => null,
+                'limit' => 255,
                 'null' => true,
+            ])
+            ->addColumn('quantidade', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('flg_ativo', 'boolean', [
+                'default' => true,
+                'null' => false,
             ])
             ->addColumn('pessoa_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('produtos_solicitacoes_id', 'integer', [
+            ->addColumn('categoria_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addIndex(
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+             ->addIndex(
                 [
                     'pessoa_id',
                 ]
             )
             ->addIndex(
                 [
-                    'produtos_solicitacoes_id',
+                    'categoria_id',
+                ]
+            )
+            ->addForeignKey(
+                'categoria_id',
+                'categorias',
+                'id',
+                [
+                    'update' => 'CASCADE',
+                    'delete' => 'RESTRICT'
                 ]
             )
              ->addForeignKey(
@@ -61,18 +84,7 @@ class Solicitacoes extends AbstractMigration
                     'update' => 'CASCADE',
                     'delete' => 'RESTRICT'
                 ]
-            )
-            ->addForeignKey(
-                'produtos_solicitacoes_id',
-                'produtos_solicitacoes',
-                'id',
-                [
-                    'update' => 'CASCADE',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-
-            ->create();
+            )->create();
 
     }
 }

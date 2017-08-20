@@ -26,6 +26,8 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->layout('admin');
+        
         $this->paginate = [
             'contain' => ['Pessoas', 'Perfis']
         ];

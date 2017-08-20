@@ -12,10 +12,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.material.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
     <!-- FIM FONTS -->
 
 
     <!-- Carregando JAVASCRIPT -->
+      
         <?= $this->Html->script('jquery-3.2.1.js') ?>
         <?= $this->Html->script('materialize.js') ?>
         <?= $this->Html->script('select2/select2.min.js') ?>
@@ -27,6 +30,8 @@
         <?= $this->Html->script('bootstrap-datepicker.js') ?>
         <?= $this->Html->script('material-kit.js') ?>
         <?= $this->Html->script('jquery.form.js') ?>
+          <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.material.min.js"></script>
         
         <!-- ChartJs -->
         <?= $this->Html->script('ChartJs/Chart.bundle.min.js') ?>

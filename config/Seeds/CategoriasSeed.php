@@ -22,14 +22,17 @@ class CategoriasSeed extends AbstractSeed
             [
                 'id' => '1',
                 'nome' => 'Alimentos',
+                'flg_ativo' => true
             ],
             [
                 'id' => '2',
                 'nome' => 'Roupas',
+                'flg_ativo' => true
             ],
             [
                 'id' => '3',
                 'nome' => 'Outros',
+                'flg_ativo' => true
             ],
         ];
 

@@ -2,6 +2,10 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
+
+
 
 /**
  * Solicitacoes Controller
@@ -13,16 +17,20 @@ use App\Controller\AppController;
 class SolicitacoesController extends AppController
 {
 
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->layout('admin'); 
+    }
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
-        $this->viewBuilder()->layout('admin');
         $this->paginate = [
-            'contain' => ['Pessoas', 'Produtos']
+            'contain' => ['Pessoas', 'ProdutosSolicitacoes']
         ];
         $solicitacoes = $this->paginate($this->Solicitacoes);
 
@@ -34,13 +42,13 @@ class SolicitacoesController extends AppController
      * View method
      *
      * @param string|null $id Solicitaco id.
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $solicitaco = $this->Solicitacoes->get($id, [
-            'contain' => ['Pessoas', 'Produtos']
+            'contain' => ['Pessoas', 'ProdutosSolicitacoes']
         ]);
 
         $this->set('solicitaco', $solicitaco);
@@ -54,20 +62,38 @@ class SolicitacoesController extends AppController
      */
     public function add()
     {
-        $solicitaco = $this->Solicitacoes->newEntity();
+        $solicitacao = $this->Solicitacoes->newEntity();
         if ($this->request->is('post')) {
-            $solicitaco = $this->Solicitacoes->patchEntity($solicitaco, $this->request->getData());
-            if ($this->Solicitacoes->save($solicitaco)) {
-                $this->Flash->success(__('The solicitaco has been saved.'));
+            $response = $this->request->getData();
+            $usuario = $this->GetUsuarioLogado();
+            $request = array(
+                'descricao' => $response['descricao'],
+                'quantidade' => $response['quantidade'],
+                'flg_ativo' => true,
+                'categoria' => array(
+                    'id' =>  $response['categoria_id'],
+                    'nome' => $response['nome_categoria'] 
+                ),
+                'pessoa' => array(
+                    'id' => $usuario->pessoa->id,
+                    'nome' => $usuario->pessoa->nome_razao_social 
+                ),
+                "created" => date('d/m/Y')
+            );
+            $solicitacao = $this->Solicitacoes->patchEntity($solicitacao,$request);
+            if ($this->Solicitacoes->save($solicitacao)) {
+                $this->Flash->success(__('The doaco has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The solicitaco could not be saved. Please, try again.'));
+            $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Solicitacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtos = $this->Solicitacoes->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('solicitaco', 'pessoas', 'produtos'));
-        $this->set('_serialize', ['solicitaco']);
+        
+        $TableCategorias = TableRegistry::get('Categorias');
+        $categorias = $TableCategorias->find('list',['conditions' => ['flg_ativo'=>true],'keyField' => 'id','valueField' => 'nome']);
+        
+        $this->set(compact('solicitacao', 'categorias'));
+        $this->set('_serialize', ['solicitacao']);
     }
 
     /**
@@ -79,22 +105,35 @@ class SolicitacoesController extends AppController
      */
     public function edit($id = null)
     {
-        $solicitaco = $this->Solicitacoes->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $solicitaco = $this->Solicitacoes->patchEntity($solicitaco, $this->request->getData());
-            if ($this->Solicitacoes->save($solicitaco)) {
-                $this->Flash->success(__('The solicitaco has been saved.'));
+         $solicitacao = $this->Solicitacoes->get($id);
+         $solicitacao->categoria_id = $solicitacao->categoria['id'];
+         $solicitacao->nome_categoria = $solicitacao->categoria['nome'];
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The solicitaco could not be saved. Please, try again.'));
-        }
-        $pessoas = $this->Solicitacoes->Pessoas->find('list', ['limit' => 200]);
-        $produtos = $this->Solicitacoes->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('solicitaco', 'pessoas', 'produtos'));
-        $this->set('_serialize', ['solicitaco']);
+         if ($this->request->is(['patch', 'post', 'put'])) {
+             $response = $this->request->getData();
+             $d = $this->Solicitacoes->get($id);
+             $request = array(
+                 'descricao' => $response['descricao'],
+                 'quantidade' => $response['quantidade'],
+                 'flg_ativo' => true,
+                 'categoria' => array(
+                     'id' =>  $response['categoria_id'],
+                     'nome' => $response['nome_categoria'] 
+                 )
+             );
+             $solicitacao = $this->Solicitacoes->patchEntity($d, $request);
+             if ($this->Solicitacoes->save($solicitacao)) {
+                 $this->Flash->success(__('The doaco has been saved.'));
+
+                 return $this->redirect(['controller' =>'solicitacoes' ,'action' => 'index']);
+             }
+             $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
+         }
+         $TableCategorias = TableRegistry::get('Categorias');
+         $categorias = $TableCategorias->find('list',['conditions' => ['flg_ativo'=>true],'keyField' => 'id','valueField' => 'nome']);
+         
+         $this->set(compact('solicitacao','categorias'));
+         $this->set('_serialize', ['solicitacao']);
     }
 
     /**

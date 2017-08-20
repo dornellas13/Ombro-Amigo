@@ -23,7 +23,8 @@ class UsuariosSeed extends AbstractSeed
             'username' => 'dornellas13@gmail.com',
             'password' => '$2y$10$J4cZzi/mxlV5FMl28UOKOeJLj9Iw98OsH4/CLqkOncF.R4.r4lo0W',
             'pessoa_id' => '1',
-            'perfil_id' => '1'
+            'perfil_id' => '1',
+            'flg_ativo' => true
         ];
 
         $table = $this->table('users');

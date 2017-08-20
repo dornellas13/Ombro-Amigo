@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Solicitacoes Model
  *
  * @property \App\Model\Table\PessoasTable|\Cake\ORM\Association\BelongsTo $Pessoas
- * @property |\Cake\ORM\Association\BelongsTo $ProdutosSolicitacoes
+ * @property |\Cake\ORM\Association\BelongsTo $Categorias
  *
  * @method \App\Model\Entity\Solicitaco get($primaryKey, $options = [])
  * @method \App\Model\Entity\Solicitaco newEntity($data = null, array $options = [])
@@ -45,8 +45,8 @@ class SolicitacoesTable extends Table
             'foreignKey' => 'pessoa_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ProdutosSolicitacoes', [
-            'foreignKey' => 'produtos_solicitacoes_id',
+        $this->belongsTo('Categorias', [
+            'foreignKey' => 'categoria_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -63,6 +63,18 @@ class SolicitacoesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator
+            ->allowEmpty('descricao');
+
+        $validator
+            ->integer('quantidade')
+            ->allowEmpty('quantidade');
+
+        $validator
+            ->boolean('flg_ativo')
+            ->requirePresence('flg_ativo', 'create')
+            ->notEmpty('flg_ativo');
+
         return $validator;
     }
 
@@ -76,7 +88,7 @@ class SolicitacoesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['pessoa_id'], 'Pessoas'));
-        $rules->add($rules->existsIn(['produtos_solicitacoes_id'], 'ProdutosSolicitacoes'));
+        $rules->add($rules->existsIn(['categoria_id'], 'Categorias'));
 
         return $rules;
     }

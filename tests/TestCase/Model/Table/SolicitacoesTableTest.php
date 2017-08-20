@@ -32,10 +32,11 @@ class SolicitacoesTableTest extends TestCase
         'app.pais',
         'app.sedes',
         'app.doacoes',
-        'app.produtos',
         'app.categorias',
+        'app.produtos',
         'app.users',
-        'app.perfis'
+        'app.perfis',
+        'app.produtos_solicitacoes'
     ];
 
     /**

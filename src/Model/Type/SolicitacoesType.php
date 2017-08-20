@@ -6,5 +6,8 @@ use Cake\ElasticSearch\Type;
 
 class SolicitacoesType extends Type
 {
-
+		public function initialize(array $config)
+    	{
+    		parent::initialize($config);
+	    }
 }

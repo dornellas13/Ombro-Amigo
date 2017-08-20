@@ -17,6 +17,8 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\ElasticSearch\TypeRegistry;
+use Cake\ElasticSearch\Document;
 
 /**
  * Application Controller
@@ -28,8 +30,7 @@ use Cake\ORM\TableRegistry;
  */
 class AppController extends Controller
 {
-
-    private function GetUsuarioLogado()
+    public function GetUsuarioLogado()
     {
         $idUsuarioLogado = $this->request->session()->read('Auth.User.id');
         $TableUsers = TableRegistry::get('Users');
@@ -40,26 +41,88 @@ class AppController extends Controller
         }
     }
 
-    // public function RealizaCombinacao(){
-    //     $usuario = $this->GetUsuarioLogado();
-    //     $TableDoacoes = TableRegistry::get('Doacoes');
-    //     $DoacoesUsuarioLogado = $TableDoacoes->find('all',['conditions' => [['Doacoes.pessoa_id' => $usuario->pessoa_id]]])->ToArray();
+    public function TestaCombinacaoSolicitacao(){
 
+    }
+    public function TestaCombinacaoDoacao(){
 
-    //     $TodasDoacoes = $TableDoacoes->find('all')->ToArray();
-    //     foreach ($DoacoesUsuarioLogado as $doacoes) {
-            
-    //     }
-    // }
+        $total = 2;
+        $categoria = array(
+            'id' => 1,
+            'nome' => 'Roupas'
+        );
+        $pessoa = array(
+            'id' => 2,
+            'nome' => 'Felipe Piconi'
+        );
 
-    public function GetInformacoesUsuarioLogado()
-    {
-        $TableUsers = TableRegistry::get('Users');
+        $objeto1 = new Document();
+        $objeto1->descricao = 'Sapato';
+        $objeto1->quantidade = 10;
+        $objeto1->categoria = $categoria;
+        $objeto1->pessoa = $pessoa;
+
+        $categoria2 = array(
+            'id' => 1,
+            'nome' => 'Alimentos'
+        );
+        $pessoa2 = array(
+            'id' => 2,
+            'nome' => 'Diego Henrique'
+        );
+
+        $objeto2 = new Document();
+        $objeto2->descricao = 'Arroz';
+        $objeto2->quantidade = 5;
+        $objeto2->categoria = $categoria2;
+        $objeto2->pessoa = $pessoa2;
         
-        $UsuarioLogado = $TableUsers->get($idUsuarioLogado, [
-            'contain' => ['Pessoas','Pessoas.Doacoes','Pessoas.Solicitacoes','Pessoas.Doacoes.ProdutosDoacoes','Pessoas.Solicitacoes.ProdutosSolicitacoes','Pessoas.Enderecos','Pessoas.Enderecos.Cidades','Pessoas.Enderecos.Cidades.Estados','Pessoas.Enderecos.Cidades.Estados.Pais','Pessoas.Solicitacoes.ProdutosSolicitacoes.Categorias','Pessoas.Doacoes.ProdutosDoacoes.Categorias']
-            ]);
-        return $UsuarioLogado;
+        $c = array($objeto1,$objeto2);
+        return  array('Total' => $total, 'Combinacoes' => $c);
+    }
+
+    public function RealizaCombinacaoDoacao(){
+        $usuario = $this->GetUsuarioLogado();
+
+        // Todas doções que o usuário logado fez.
+        $tableDoacoes = TypeRegistry::get('Doacoes');
+        $doacoes = $tableDoacoes->find();
+        $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
+
+        $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
+        $solicitacoes = $tableSolicitacoes->find();
+        $solicitacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+
+        $Combinacoes = array();
+        foreach ($doacoes as $result) {
+           $c = $solicitacoes->where(['categoria.id' => $result->categoria['id'],'descricao LIKE' => '%'.$result->descricao.'%']);
+            array_push($Combinacoes,$c);
+        }
+
+        return array('TotalCombinacaoDoacao' => count($Combinacoes), 'CombinacaoDoacoes' => $Combinacoes);
+
+    }
+
+
+    public function RealizaCombinacaoSolicitacao(){
+
+        $usuario = $this->GetUsuarioLogado();
+
+        $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
+        $solicitacoes = $tableSolicitacoes->find();
+        $solicitacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
+
+        $tableDoacoes = TypeRegistry::get('Doacoes');
+        $doacoes = $tableDoacoes->find();
+        $doacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+
+        $Combinacoes = array();
+        foreach ($solicitacoes as $result) {
+           $c = $doacoes->where(['categoria.id' => $result->categoria['id'],'descricao LIKE' => '%'.$result->descricao.'%']);
+            array_push($Combinacoes,$c);
+        }
+
+        return array('TotalSolicitacao' => count($Combinacoes), 'CombinacaoSolicitacao' => $Combinacoes);
     }
 
 
@@ -95,8 +158,11 @@ class AppController extends Controller
             'storage' => 'Session'
         ]);
 
+        $resultDoacoes = $this->TestaCombinacaoDoacao();
+        // $resultSolicitacoes = $this->TestaCombinacaoSolicitacao();
+        $this->set('resultDoacoes' ,$resultDoacoes);
+        $this->set('_serialize', ['resultDoacoes']);
 
-        // $this->RealizaCombinacao();
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
@@ -113,15 +179,14 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
             $this->set('_serialize', true);
         }
-
-        // Seta Variavel Global de Usuário Logado.
+ 
         $this->set('UsuarioLogado',$this->GetUsuarioLogado());
+        // Seta Variavel Global de Usuário Logado.
     }
 
     public function beforeFilter(Event $event)
@@ -131,11 +196,8 @@ class AppController extends Controller
          
          // Carregar tabelas a serem utilizadas com o 'Elastic Search'
          // Carrega o Type usando o provedor 'Elastic'
-         // $this->loadModel('Categorias', 'Elastic');
-         // $this->loadModel('ProdutosDoacoes', 'Elastic');
-         // $this->loadModel('ProdutosSolicitacoes', 'Elastic');
-         // $this->loadModel('Solicitacoes','Elastic');
-         // $this->loadModel('Doacoes','Elastic');
+         $this->loadModel('Solicitacoes','Elastic');
+         $this->loadModel('Doacoes','Elastic');
 
     }
 }
