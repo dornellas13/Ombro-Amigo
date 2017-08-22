@@ -29,10 +29,8 @@ class SolicitacoesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Pessoas', 'ProdutosSolicitacoes']
-        ];
-        $solicitacoes = $this->paginate($this->Solicitacoes);
+    
+        $solicitacoes = $this->Doacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
 
         $this->set(compact('solicitacoes'));
         $this->set('_serialize', ['solicitacoes']);

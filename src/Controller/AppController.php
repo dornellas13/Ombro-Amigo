@@ -41,65 +41,19 @@ class AppController extends Controller
         }
     }
 
-    public function TestaCombinacaoSolicitacao(){
-
-    }
-    public function TestaCombinacaoDoacao(){
-
-        $total = 2;
-        $categoria = array(
-            'id' => 1,
-            'nome' => 'Roupas'
-        );
-        $pessoa = array(
-            'id' => 2,
-            'nome' => 'Felipe Piconi'
-        );
-
-        $objeto1 = new Document();
-        $objeto1->descricao = 'Sapato';
-        $objeto1->quantidade = 10;
-        $objeto1->categoria = $categoria;
-        $objeto1->pessoa = $pessoa;
-
-        $categoria2 = array(
-            'id' => 1,
-            'nome' => 'Alimentos'
-        );
-        $pessoa2 = array(
-            'id' => 2,
-            'nome' => 'Diego Henrique'
-        );
-
-        $objeto2 = new Document();
-        $objeto2->descricao = 'Arroz';
-        $objeto2->quantidade = 5;
-        $objeto2->categoria = $categoria2;
-        $objeto2->pessoa = $pessoa2;
-        
-        $c = array($objeto1,$objeto2);
-        return  array('Total' => $total, 'Combinacoes' => $c);
-    }
-
     public function RealizaCombinacaoDoacao(){
         $usuario = $this->GetUsuarioLogado();
 
-        // Todas doções que o usuário logado fez.
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $doacoes = $tableDoacoes->find();
         $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
-
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
         $solicitacoes = $tableSolicitacoes->find();
-        $solicitacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
-
-        $Combinacoes = array();
         foreach ($doacoes as $result) {
-           $c = $solicitacoes->where(['categoria.id' => $result->categoria['id'],'descricao LIKE' => '%'.$result->descricao.'%']);
-            array_push($Combinacoes,$c);
+           $Combinacoes = $solicitacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
         }
-
-        return array('TotalCombinacaoDoacao' => count($Combinacoes), 'CombinacaoDoacoes' => $Combinacoes);
+        // Faltando filtro de LIKE PARA DESCRICAO.
+        return array('Total' => count($Combinacoes->toArray()), 'Combinacoes' => $Combinacoes->toArray());
 
     }
 
@@ -114,15 +68,12 @@ class AppController extends Controller
 
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $doacoes = $tableDoacoes->find();
-        $doacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
 
-        $Combinacoes = array();
         foreach ($solicitacoes as $result) {
-           $c = $doacoes->where(['categoria.id' => $result->categoria['id'],'descricao LIKE' => '%'.$result->descricao.'%']);
-            array_push($Combinacoes,$c);
+           $Combinacoes = $doacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
         }
 
-        return array('TotalSolicitacao' => count($Combinacoes), 'CombinacaoSolicitacao' => $Combinacoes);
+        return array('Total' => count($Combinacoes->toArray()), 'Combinacoes' => $Combinacoes->toArray());
     }
 
 
@@ -158,10 +109,10 @@ class AppController extends Controller
             'storage' => 'Session'
         ]);
 
-        $resultDoacoes = $this->TestaCombinacaoDoacao();
-        // $resultSolicitacoes = $this->TestaCombinacaoSolicitacao();
-        $this->set('resultDoacoes' ,$resultDoacoes);
-        $this->set('_serialize', ['resultDoacoes']);
+        $resultDoacoes = $this->RealizaCombinacaoDoacao();
+        $resultSolicitacoes = $this->RealizaCombinacaoSolicitacao();
+        $this->set(compact('resultDoacoes','resultSolicitacoes'));
+        $this->set('_serialize', ['resultDoacoes','resultSolicitacoes']);
 
         /*
          * Enable the following components for recommended CakePHP security settings.

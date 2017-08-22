@@ -28,7 +28,7 @@ class DoacoesController extends AppController
      */
     public function index()
     {
-        $doacoes = $this->Doacoes->find();
+        $doacoes = $this->Doacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
         $this->set('doacoes',$doacoes);
     }
 

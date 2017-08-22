@@ -107,17 +107,35 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                       <i class="fa fa-gift"></i>
-                      <span class="label label-primary">5</span>
+                      <span class="label label-primary"><?=$resultSolicitacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">Possíveis Solicitações para hoje</li>
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                    <li class="dropdown-header">Possíveis Solicitações para hoje
+                    </li>
+                        <?php 
+                            foreach ($resultSolicitacoes['Combinacoes'] as $result) {
+                        ?>
+                            <li class="dropdown-content">
+                                <label>
+                                    <small>
+                                        Descrição:  <?=$result->descricao?>
+                                        <br>
+                                        Solicitante: <?=$result->pessoa['nome']?>
+                                        <br>
+                                        Categoria: <?=$result->categoria['nome']?>
+                                    </small>     
+                                </label>
+                            </li>
+                            
+                        <?php
+                            }
+                        ?>
+                    
                         <li class="divider"></li>
                         <li><a href="#">Verificar Todas</a></li>
                     </ul>
                 </li>
+            
                
                 <li>
                      <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'perfil'],['escape' => false])?>
