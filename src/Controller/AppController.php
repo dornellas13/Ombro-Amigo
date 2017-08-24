@@ -46,14 +46,18 @@ class AppController extends Controller
 
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $doacoes = $tableDoacoes->find();
+     
         $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
         $solicitacoes = $tableSolicitacoes->find();
+        $Combinacoes = null;
         foreach ($doacoes as $result) {
            $Combinacoes = $solicitacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
         }
-        // Faltando filtro de LIKE PARA DESCRICAO.
-        return array('Total' => count($Combinacoes->toArray()), 'Combinacoes' => $Combinacoes->toArray());
+          // Faltando filtro de LIKE PARA DESCRICAO.
+
+        $Combinacoes = !is_null($Combinacoes) ? $Combinacoes->toArray() : array(); 
+        return array('Total' => count($Combinacoes), 'Combinacoes' => $Combinacoes);
 
     }
 
@@ -68,12 +72,14 @@ class AppController extends Controller
 
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $doacoes = $tableDoacoes->find();
-
+        $Combinacoes = null;
         foreach ($solicitacoes as $result) {
            $Combinacoes = $doacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
         }
+        // Faltando filtro de LIKE PARA DESCRICAO.
 
-        return array('Total' => count($Combinacoes->toArray()), 'Combinacoes' => $Combinacoes->toArray());
+        $Combinacoes = !is_null($Combinacoes) ? $Combinacoes->toArray() : array(); 
+        return array('Total' => count($Combinacoes), 'Combinacoes' => $Combinacoes);
     }
 
 
@@ -109,10 +115,12 @@ class AppController extends Controller
             'storage' => 'Session'
         ]);
 
-        $resultDoacoes = $this->RealizaCombinacaoDoacao();
-        $resultSolicitacoes = $this->RealizaCombinacaoSolicitacao();
-        $this->set(compact('resultDoacoes','resultSolicitacoes'));
-        $this->set('_serialize', ['resultDoacoes','resultSolicitacoes']);
+        if($this->Auth->user()){
+            $resultDoacoes = $this->RealizaCombinacaoDoacao();
+            $resultSolicitacoes = $this->RealizaCombinacaoSolicitacao();
+            $this->set(compact('resultDoacoes','resultSolicitacoes'));
+            $this->set('_serialize', ['resultDoacoes','resultSolicitacoes']);
+        }
 
         /*
          * Enable the following components for recommended CakePHP security settings.
