@@ -3,6 +3,7 @@
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Doaco[]|\Cake\Collection\CollectionInterface $doacoes
   */
+ echo $this->Html->script('App/doacoes.js');
 ?>
 <div class="doacoes index large-9 medium-8 columns content">
     <h3><?= __('Doacoes') ?></h3>

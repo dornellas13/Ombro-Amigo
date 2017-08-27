@@ -19,7 +19,27 @@ use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\ElasticSearch\TypeRegistry;
 use Cake\ElasticSearch\Document;
-
+use \YaLinqo\Enumerable;
+use Cake\I18n\Time;
+use Cake\I18n\Data;
+use Cake\I18n\Number;
+use Cake\Database\Type;
+// Habilita o parseamento de datas localizadas
+Type::build('date')
+ ->useLocaleParser()
+ ->setLocaleFormat('dd/MM/yyyy');
+Type::build('datetime')
+ ->useLocaleParser()
+ ->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+Type::build('timestamp')
+ ->useLocaleParser()
+ ->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+ 
+// Habilita o parseamento de decimal localizaddos
+Type::build('decimal')
+ ->useLocaleParser();
+Type::build('float')
+ ->useLocaleParser();
 /**
  * Application Controller
  *
@@ -48,16 +68,20 @@ class AppController extends Controller
         $doacoes = $tableDoacoes->find();
      
         $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
-        $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-        $solicitacoes = $tableSolicitacoes->find();
-        $Combinacoes = null;
-        foreach ($doacoes as $result) {
-           $Combinacoes = $solicitacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
-        }
-          // Faltando filtro de LIKE PARA DESCRICAO.
 
-        $Combinacoes = !is_null($Combinacoes) ? $Combinacoes->toArray() : array(); 
-        return array('Total' => count($Combinacoes), 'Combinacoes' => $Combinacoes);
+        $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
+        $solicitacoes = $tableSolicitacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+
+        $result = from($doacoes)
+        ->orderBy('$d ==> $d["descricao"]')
+        ->groupJoin(
+            from($solicitacoes)
+                ->orderBy('$s ==> $s["descricao"]'),
+            '$d ==> $d["categoria"]["id"]','$s ==> $s["categoria"]["id"]',
+            '($d, $result) ==> $result'
+        )->selectMany()->toArray();
+
+        return array('Total' => count(array_unique($result)), 'Combinacoes' => array_unique($result));
 
     }
 
@@ -71,15 +95,18 @@ class AppController extends Controller
         $solicitacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
 
         $tableDoacoes = TypeRegistry::get('Doacoes');
-        $doacoes = $tableDoacoes->find();
-        $Combinacoes = null;
-        foreach ($solicitacoes as $result) {
-           $Combinacoes = $doacoes->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true,'categoria.id' => $result->categoria['id']]);
-        }
-        // Faltando filtro de LIKE PARA DESCRICAO.
+        $doacoes = $tableDoacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+       
+       $result = from($solicitacoes)
+       ->orderBy('$d ==> $d["descricao"]')
+       ->groupJoin(
+           from($doacoes)
+               ->orderBy('$s ==> $s["descricao"]'),
+           '$d ==> $d["categoria"]["id"]','$s ==> $s["categoria"]["id"]',
+           '($d, $result) ==> $result'
+       )->selectMany()->toArray();
 
-        $Combinacoes = !is_null($Combinacoes) ? $Combinacoes->toArray() : array(); 
-        return array('Total' => count($Combinacoes), 'Combinacoes' => $Combinacoes);
+       return array('Total' => count(array_unique($result)), 'Combinacoes' => array_unique($result));
     }
 
 

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	solicitacoes.DataTable = new DataTableHelper();
+    solicitacoes.DataTable.CarregaDataTable();
 	solicitacoes.ValidacaoFormularioSolicitacao();
 	$("select[name='categoria_id']").change(function(){
 		$("#nome-categoria").val($("option[value="+this.value+"]")[0].text);
@@ -9,6 +11,7 @@ $(document).ready(function(){
 function Solicitacoes(){}
 
 Solicitacoes.prototype = {
+	DataTable:null,
 	constructor: Solicitacoes,
 	ValidacaoFormularioSolicitacao: function(){
 		$("#formSolicitacao").validate({

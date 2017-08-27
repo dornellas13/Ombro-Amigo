@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	sedes.DataTable = new DataTableHelper();
+    sedes.DataTable.CarregaDataTable();
 	enderecos.CarregaEventos();
 	sedes.CarregaValidacaoForm();
 });
@@ -6,6 +8,7 @@ $(document).ready(function(){
 function Sedes(){}
 
 Sedes.prototype = {
+	DataTable:null,
 	constructor: Sedes,
 	CarregaValidacaoForm: function(){
 

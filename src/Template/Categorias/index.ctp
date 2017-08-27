@@ -2,6 +2,8 @@
 /**
   * @var \App\View\AppView $this
   */
+ echo $this->Html->script('App/categorias.js');
+
 ?>
 <div class="categorias index col s12 m4 l3">
     <h3><?= __('Categorias') ?></h3>

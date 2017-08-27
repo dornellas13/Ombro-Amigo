@@ -30,7 +30,7 @@ class SolicitacoesController extends AppController
     public function index()
     {
     
-        $solicitacoes = $this->Doacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
+        $solicitacoes = $this->Solicitacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
 
         $this->set(compact('solicitacoes'));
         $this->set('_serialize', ['solicitacoes']);
