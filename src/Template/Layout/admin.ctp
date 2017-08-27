@@ -83,7 +83,7 @@
                       <span class="label label-primary"><?=$resultDoacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Doações para hoje
+                    <li class="dropdown-header">Pessoas que precisam de sua doação
                     </li>
                         <?php 
                             foreach ($resultDoacoes['Combinacoes'] as $result) {
@@ -114,7 +114,7 @@
                       <span class="label label-primary"><?=$resultSolicitacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Solicitações para hoje
+                    <li class="dropdown-header">Pessoas que podem te doar algo
                     </li>
                         <?php 
                             foreach ($resultSolicitacoes['Combinacoes'] as $result) {
@@ -124,7 +124,7 @@
                                     <small>
                                         Descrição:  <?=$result->descricao?>
                                         <br>
-                                        Solicitante: <?=$result->pessoa['nome']?>
+                                        doador: <?=$result->pessoa['nome']?>
                                         <br>
                                         Categoria: <?=$result->categoria['nome']?>
                                     </small>     
