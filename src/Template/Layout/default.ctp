@@ -76,10 +76,10 @@
                     <div class="">
                         <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
                     </div>
-                    <div class="brand">
+               <!--      <div class="brand">
                         Ombro Amigo
                     </div>
-
+ -->
 
                 </div>
             </a>

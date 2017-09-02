@@ -67,7 +67,7 @@ class SedesController extends AppController
         if ($this->request->is('post')) {
             $sede = $this->Sedes->patchEntity($sede, $this->request->getData());
             if ($this->Sedes->save($sede)) {
-                $this->Flash->success(__('The sede has been saved.'));
+                $this->Flash->success(__('A sede foi cadastrada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -100,7 +100,7 @@ class SedesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $sede = $this->Sedes->patchEntity($sede, $this->request->getData());
             if ($this->Sedes->save($sede)) {
-                $this->Flash->success(__('The sede has been saved.'));
+                $this->Flash->success(__('A sede foi editada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -123,7 +123,7 @@ class SedesController extends AppController
         $sede = $this->Sedes->get($id);
         $sede->flg_ativo = false;
         if ($this->Sedes->save($sede)) {
-            $this->Flash->success(__('The sede has been deleted.'));
+            $this->Flash->success(__('A sede foi deletada com sucesso.'));
         } else {
             $this->Flash->error(__('The sede could not be deleted. Please, try again.'));
         }

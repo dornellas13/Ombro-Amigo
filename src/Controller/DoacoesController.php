@@ -77,7 +77,7 @@ class DoacoesController extends AppController
 
             $doacao = $this->Doacoes->patchEntity($doacao,$request);
             if ($this->Doacoes->save($doacao)) {
-                $this->Flash->success(__('The doaco has been saved.'));
+                $this->Flash->success(__('A doação foi cadastrada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -118,7 +118,7 @@ class DoacoesController extends AppController
             );
             $doacao = $this->Doacoes->patchEntity($d, $request);
             if ($this->Doacoes->save($doacao)) {
-                $this->Flash->success(__('The doaco has been saved.'));
+                $this->Flash->success(__('A doação foi editada com sucesso.'));
 
                 return $this->redirect(['controller' =>'doacoes' ,'action' => 'index']);
             }
