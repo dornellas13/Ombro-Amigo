@@ -143,6 +143,8 @@ class AppController extends Controller
         ]);
 
         if($this->Auth->user()){
+            TypeRegistry::get('Solicitacoes')->connection()->getIndex()->refresh();
+            TypeRegistry::get('Doacoes')->connection()->getIndex()->refresh();
             $resultDoacoes = $this->RealizaCombinacaoDoacao();
             $resultSolicitacoes = $this->RealizaCombinacaoSolicitacao();
             $this->set(compact('resultDoacoes','resultSolicitacoes'));
