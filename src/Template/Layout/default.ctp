@@ -50,9 +50,86 @@
     
 </head>
 
+<<<<<<< HEAD
     <body class="index-page">
         <!-- Navbar -->
         <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+=======
+<body class="index-page">
+<!-- Navbar -->
+<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/">
+                <div class="logo-container">
+                    <div class="">
+                        <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+                    </div>
+               <!--      <div class="brand">
+                        Ombro Amigo
+                    </div>
+ -->
+
+                </div>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navigation-index">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                     <?=$this->Html->link('<i class="material-icons">lock_outline</i> Entrar',['controller' => 'users','action' => 'login'],['escape' => false])?>
+                </li>
+                <li>
+                    <?=$this->Html->link('<i class="material-icons">exit_to_app</i> Registrar-se',['controller' => 'users','action' => 'add'],['escape' => false])?>
+                
+                </li>
+                <li>
+                    <a rel="tooltip" title="Siga-nos no Twitter" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a rel="tooltip" title="Curta nossa página no Facebook" data-placement="bottom" href="#m" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a rel="tooltip" title="sIGA-nos no Instagram" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+
+<div class="wrapper">
+    <div class="header header-filter" style="background-image: url('/img/bg2.jpeg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="brand">
+                        <h1><B></B></h1>
+                        <h2>O que você tem para doar hoje?</h2>
+                        <button class="btn btn-primary btn-round btn-lg">FAZER DOAÇÃO</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main main-raised">
+        <div class="section section-basic">
+>>>>>>> c6dd341789ce93434218a00785a999e2be232ae3
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">

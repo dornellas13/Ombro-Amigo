@@ -56,7 +56,7 @@ class CategoriasController extends AppController
               $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
               $categoria->flg_ativo = true;
               if ($this->Categorias->save($categoria)) {
-                  $this->Flash->success('Documento salvo com sucesso!');
+                  $this->Flash->success('A categoria foi cadastrada com sucesso.');
                    return $this->redirect(['action' => 'index']);
               }
           }
@@ -78,7 +78,7 @@ class CategoriasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
             if ($this->Categorias->save($categoria)) {
-                $this->Flash->success(__('The categoria has been saved.'));
+                $this->Flash->success(__('A categoria foi editada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class CategoriasController extends AppController
         $categoria = $this->Categorias->get($id);
         $categoria->flg_ativo = false;
         if ($this->Categorias->save($categoria)) {
-            $this->Flash->success(__('The categoria has been deleted.'));
+            $this->Flash->success(__('A categoria foi deletada com sucesso.'));
         } else {
             $this->Flash->error(__('The categoria could not be deleted. Please, try again.'));
         }

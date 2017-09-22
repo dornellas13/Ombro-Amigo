@@ -15,6 +15,10 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
 
         <!-- JAVASCRIPT FILES -->
+              <!-- ChartJs -->
+        <?= $this->Html->script('ChartJs/Chart.bundle.min.js') ?>
+        <?= $this->Html->script('ChartJs/Chart.min.js') ?>
+
         <?= $this->Html->script('jquery-3.2.1.js') ?>
         <?= $this->Html->script('materialize.js') ?>
         <?= $this->Html->script('select2/select2.min.js') ?>
@@ -57,14 +61,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/">
+            <a href="/timeline">
                 <div class="logo-container">
+<<<<<<< HEAD
                     <div class="logo">
                         <img src="/OMBROAMIGO/Ombro-Amigo/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+=======
+                    <div class="">
+                        <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+>>>>>>> c6dd341789ce93434218a00785a999e2be232ae3
                     </div>
-                    <div class="brand">
+                   <!--  <div class="brand">
                         Ombro Amigo
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -79,7 +88,7 @@
                       <span class="label label-primary"><?=$resultDoacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Doações para hoje
+                    <li class="dropdown-header">Pessoas que precisam de sua doação
                     </li>
                         <?php 
                             foreach ($resultDoacoes['Combinacoes'] as $result) {
@@ -110,7 +119,7 @@
                       <span class="label label-primary"><?=$resultSolicitacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Solicitações para hoje
+                    <li class="dropdown-header">Pessoas que podem te doar algo
                     </li>
                         <?php 
                             foreach ($resultSolicitacoes['Combinacoes'] as $result) {
@@ -120,7 +129,7 @@
                                     <small>
                                         Descrição:  <?=$result->descricao?>
                                         <br>
-                                        Solicitante: <?=$result->pessoa['nome']?>
+                                        doador: <?=$result->pessoa['nome']?>
                                         <br>
                                         Categoria: <?=$result->categoria['nome']?>
                                     </small>     
@@ -1506,15 +1515,7 @@
     <!--   Core JS Files   -->
 
     <script type="text/javascript">
-
         $().ready(function(){
-
-            //Cuidado não apagar, essa função aplica DataTable em todas telas que existem tabelas.
-            if($("table").length > 0){
-                var datatable = new DataTableHelper();
-                datatable.CarregaDataTable();
-            }
-
 
             // the body of this function is in assets/material-kit.js
             materialKit.initSliders();

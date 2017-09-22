@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	doacoes.DataTable = new DataTableHelper();
+    doacoes.DataTable.CarregaDataTable();
     doacoes.ValidacaoFormularioDoacao();
 	$("select[name='categoria_id']").change(function(){
 		$("#nome-categoria").val($("option[value="+this.value+"]")[0].text);
@@ -9,6 +11,7 @@ function Doacoes(){}
 
 Doacoes.prototype = {
 	constructor: Doacoes,
+	DataTable: null,
 	ValidacaoFormularioDoacao: function(){
 		$("#formDoacao").validate({
 			rules: {
