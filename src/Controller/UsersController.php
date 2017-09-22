@@ -61,6 +61,10 @@ class UsersController extends AppController
      */
     public function add()
     {
+
+        $this->viewBuilder()->layout('login');
+
+        
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -124,6 +128,9 @@ class UsersController extends AppController
     }
 
     public function login(){
+
+        $this->viewBuilder()->layout('login');
+
         if ($this->request->is('post')) {
              $user = $this->Auth->identify();
              if ($user) {

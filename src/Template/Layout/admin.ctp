@@ -60,7 +60,7 @@
             <a href="/">
                 <div class="logo-container">
                     <div class="logo">
-                        <img src="../img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+                        <img src="/OMBROAMIGO/Ombro-Amigo/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
                     </div>
                     <div class="brand">
                         Ombro Amigo
@@ -169,7 +169,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header admin header-filter" style="background-image: url('../img/bg3.jpeg');">
+    <div class="header admin header-filter" style="background-image: url('/OMBROAMIGO/Ombro-Amigo/img/bg3.jpeg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -185,12 +185,56 @@
 
     <div class="main main-raised">
         <div class="section section-basic">
+
+        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="#">Painel - Administrativo</a>
+                                </div>
+
+                                <div class="collapse navbar-collapse" id="example-navbar">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">menu</a></li>
+                                        <li><a href="#">menu 2</a></li>
+                                        <li><a href="#">menu 3</a></li>
+                                        <li><a href="#">menu 4</a></li>
+                                        <li><a href="#">menu 5</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONJUNTO
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">item 2</a></li>
+                                                <li><a href="#">item 2</a></li>
+                                                <li><a href="#">item 3</a></li>
+                                                <li><a href="#">item 4</a></li>
+                                                <li><a href="#">item 5</a></li>
+                                                <li><a href="#">item 6</a></li>
+                                                <li><a href="#">item 7</a></li>
+                                                <li><a href="#">item 8</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
             <div class="container">
                 <div class="title">
                     
                 </div>
                 <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
+
+
+
+
 
                 <!-- <div id="buttons">
                     <div class="title">
