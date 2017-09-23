@@ -63,13 +63,10 @@
             </button>
             <a href="/timeline">
                 <div class="logo-container">
-<<<<<<< HEAD
-                    <div class="logo">
-                        <img src="/OMBROAMIGO/Ombro-Amigo/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
-=======
+
                     <div class="">
                         <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
->>>>>>> c6dd341789ce93434218a00785a999e2be232ae3
+
                     </div>
                    <!--  <div class="brand">
                         Ombro Amigo
@@ -147,7 +144,7 @@
             
                
                 <li>
-                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'perfil'],['escape' => false])?>
+                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'home','action' => 'index'],['escape' => false])?>
                 </li>
                 <li>
                      <?=$this->Html->link('<i class="fa fa-sign-out"></i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
@@ -178,7 +175,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header admin header-filter" style="background-image: url('/OMBROAMIGO/Ombro-Amigo/img/bg3.jpeg');">
+    <div class="header admin header-filter" style="background-image: url(<?=$this->Url->image('bg3.jpeg')?>)">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
