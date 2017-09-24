@@ -31,10 +31,7 @@ class SolicitacoesController extends AppController
     {
     
         $solicitacoes = $this->Solicitacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
-<<<<<<< HEAD
-       
-=======
->>>>>>> 43e07fa856eb3eb7bd9a3cd6398abc4c5e2a5564
+
         $this->set(compact('solicitacoes'));
         $this->set('_serialize', ['solicitacoes']);
     }
