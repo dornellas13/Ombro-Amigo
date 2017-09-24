@@ -61,10 +61,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/">
+            <a href="/timeline">
                 <div class="logo-container">
+
                     <div class="">
                         <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
+
                     </div>
                    <!--  <div class="brand">
                         Ombro Amigo
@@ -83,7 +85,7 @@
                       <span class="label label-primary"><?=$resultDoacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Doações para hoje
+                    <li class="dropdown-header">Pessoas que precisam de sua doação
                     </li>
                         <?php 
                             foreach ($resultDoacoes['Combinacoes'] as $result) {
@@ -114,7 +116,7 @@
                       <span class="label label-primary"><?=$resultSolicitacoes['Total']?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">Possíveis Solicitações para hoje
+                    <li class="dropdown-header">Pessoas que podem te doar algo
                     </li>
                         <?php 
                             foreach ($resultSolicitacoes['Combinacoes'] as $result) {
@@ -124,7 +126,7 @@
                                     <small>
                                         Descrição:  <?=$result->descricao?>
                                         <br>
-                                        Solicitante: <?=$result->pessoa['nome']?>
+                                        doador: <?=$result->pessoa['nome']?>
                                         <br>
                                         Categoria: <?=$result->categoria['nome']?>
                                     </small>     
@@ -142,7 +144,7 @@
             
                
                 <li>
-                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'perfil'],['escape' => false])?>
+                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'home','action' => 'index'],['escape' => false])?>
                 </li>
                 <li>
                      <?=$this->Html->link('<i class="fa fa-sign-out"></i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
@@ -173,7 +175,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header admin header-filter" style="background-image: url('../img/bg3.jpeg');">
+    <div class="header admin header-filter" style="background-image: url(<?=$this->Url->image('bg3.jpeg')?>)">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -189,12 +191,56 @@
 
     <div class="main main-raised">
         <div class="section section-basic">
+
+        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="#">Painel - Administrativo</a>
+                                </div>
+
+                                <div class="collapse navbar-collapse" id="example-navbar">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">menu</a></li>
+                                        <li><a href="#">menu 2</a></li>
+                                        <li><a href="#">menu 3</a></li>
+                                        <li><a href="#">menu 4</a></li>
+                                        <li><a href="#">menu 5</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONJUNTO
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">item 2</a></li>
+                                                <li><a href="#">item 2</a></li>
+                                                <li><a href="#">item 3</a></li>
+                                                <li><a href="#">item 4</a></li>
+                                                <li><a href="#">item 5</a></li>
+                                                <li><a href="#">item 6</a></li>
+                                                <li><a href="#">item 7</a></li>
+                                                <li><a href="#">item 8</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
             <div class="container">
                 <div class="title">
                     
                 </div>
                 <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
+
+
+
+
 
                 <!-- <div id="buttons">
                     <div class="title">

@@ -57,7 +57,7 @@ class CategoriasController extends AppController
               $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
               $categoria->flg_ativo = true;
               if ($this->Categorias->save($categoria)) {
-                  $this->Flash->success('Documento salvo com sucesso!');
+                  $this->Flash->success('A categoria foi cadastrada com sucesso.');
                    return $this->redirect(['action' => 'index']);
               }
           }
@@ -80,7 +80,11 @@ class CategoriasController extends AppController
             $response = $this->request->getData();
             $categoria = $this->Categorias->patchEntity($categoria, $response);
             if ($this->Categorias->save($categoria)) {
+<<<<<<< HEAD
                 
+=======
+                $this->Flash->success(__('A categoria foi editada com sucesso.'));
+>>>>>>> 43e07fa856eb3eb7bd9a3cd6398abc4c5e2a5564
 
                 //atualizando os documento que possuem essa categoria.
                $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
@@ -129,6 +133,7 @@ class CategoriasController extends AppController
         $categoriaAtualiza = $this->Categorias->get($id);
         $categoria->flg_ativo = false;
         if ($this->Categorias->save($categoria)) {
+<<<<<<< HEAD
             //atualizando os documento que possuem essa categoria.
                $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
                $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id]);
@@ -150,6 +155,9 @@ class CategoriasController extends AppController
 
             $this->Flash->success(__('The categoria has been deleted.'));
         }
+=======
+            $this->Flash->success(__('A categoria foi deletada com sucesso.'));
+>>>>>>> 43e07fa856eb3eb7bd9a3cd6398abc4c5e2a5564
         } else {
             $this->Flash->error(__('The categoria could not be deleted. Please, try again.'));
         }

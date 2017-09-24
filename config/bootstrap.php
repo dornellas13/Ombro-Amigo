@@ -234,13 +234,11 @@ Plugin::load('Acl', ['bootstrap' => true]);
 
 
 
- Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
+ // Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
 /* Elastic Search(Apache Lucene)*/
-/*Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
+Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);
 
 
-Plugin::load('elasticsearch');*/
-
-Plugin::load('Elasticsearch', ['bootstrap' => false, 'routes' => true]);
+Plugin::load('elasticsearch');
 
 Plugin::load('Elasticsearch', ['bootstrap' => false, 'routes' => true]);

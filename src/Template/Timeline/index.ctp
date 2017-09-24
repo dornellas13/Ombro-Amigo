@@ -52,7 +52,7 @@
                         		<th>Descrição</th>
                         		<th>Quantidade</th>
                         		<th>Categoria</th>
-                        		<th>Dador</th>
+                        		<th>Doador</th>
                         		<th>Criação</th>
                         	</thead>
                         	<tbody>

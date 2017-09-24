@@ -61,15 +61,19 @@ class UsersController extends AppController
      */
     public function add()
     {
+
+        $this->viewBuilder()->layout('login');
+
+        
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Bem vindo, obrigado por nos ajudar, para o seu primeiro acesso informe o email e a senha.'));
         }
         $pais = $this->Users->Pessoas->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
         $this->set(compact('user', 'pais'));
@@ -124,13 +128,16 @@ class UsersController extends AppController
     }
 
     public function login(){
+
+        $this->viewBuilder()->layout('login');
+
         if ($this->request->is('post')) {
              $user = $this->Auth->identify();
              if ($user) {
                  $this->Auth->setUser($user);
                  return $this->redirect($this->Auth->redirectUrl());
              } else {
-                 $this->Flash->error(__('Username or password is incorrect'));
+                 $this->Flash->error(__('Usuário ou senha inválido'));
              }
          }
     }

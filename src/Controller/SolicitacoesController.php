@@ -31,7 +31,10 @@ class SolicitacoesController extends AppController
     {
     
         $solicitacoes = $this->Solicitacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
+<<<<<<< HEAD
        
+=======
+>>>>>>> 43e07fa856eb3eb7bd9a3cd6398abc4c5e2a5564
         $this->set(compact('solicitacoes'));
         $this->set('_serialize', ['solicitacoes']);
     }
@@ -80,7 +83,7 @@ class SolicitacoesController extends AppController
             );
             $solicitacao = $this->Solicitacoes->patchEntity($solicitacao,$request);
             if ($this->Solicitacoes->save($solicitacao)) {
-                $this->Flash->success(__('The doaco has been saved.'));
+                $this->Flash->success(__('A solicitação foi cadastrada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -121,7 +124,7 @@ class SolicitacoesController extends AppController
              );
              $solicitacao = $this->Solicitacoes->patchEntity($d, $request);
              if ($this->Solicitacoes->save($solicitacao)) {
-                 $this->Flash->success(__('The doaco has been saved.'));
+                 $this->Flash->success(__('A doação foi editada com sucesso.'));
 
                  return $this->redirect(['controller' =>'solicitacoes' ,'action' => 'index']);
              }
@@ -147,7 +150,7 @@ class SolicitacoesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $solicitaco = $this->Solicitacoes->get($id);
         if ($this->Solicitacoes->delete($solicitaco)) {
-            $this->Flash->success(__('The solicitaco has been deleted.'));
+            $this->Flash->success(__('A solicitação foi deletada com sucesso.'));
         } else {
             $this->Flash->error(__('The solicitaco could not be deleted. Please, try again.'));
         }
