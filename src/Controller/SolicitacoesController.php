@@ -31,7 +31,7 @@ class SolicitacoesController extends AppController
     {
     
         $solicitacoes = $this->Solicitacoes->find()->where(['flg_ativo' => true,'pessoa.id' => $this->request->session()->read('Auth.User.pessoa_id')]);
-
+       
         $this->set(compact('solicitacoes'));
         $this->set('_serialize', ['solicitacoes']);
     }
@@ -127,6 +127,7 @@ class SolicitacoesController extends AppController
              }
              $this->Flash->error(__('The doaco could not be saved. Please, try again.'));
          }
+         
          $TableCategorias = TableRegistry::get('Categorias');
          $categorias = $TableCategorias->find('list',['conditions' => ['flg_ativo'=>true],'keyField' => 'id','valueField' => 'nome']);
          

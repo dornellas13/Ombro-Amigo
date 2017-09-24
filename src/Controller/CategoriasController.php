@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ElasticSearch\TypeRegistry;
 /**
  * Categorias Controller
  *
@@ -76,14 +77,40 @@ class CategoriasController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
+            $response = $this->request->getData();
+            $categoria = $this->Categorias->patchEntity($categoria, $response);
             if ($this->Categorias->save($categoria)) {
-                $this->Flash->success(__('The categoria has been saved.'));
+                
 
+                //atualizando os documento que possuem essa categoria.
+               $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
+               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id]);
+       
+                foreach($solicitacao as $so){
+                 
+                    $request = array(
+                         'descricao' => $so['descricao'],
+                         'quantidade' => $so['quantidade'],
+                         'flg_ativo' => true,
+                         'categoria' => array(
+                             'id' =>  $categoria->id,
+                             'nome' => $categoria->nome 
+                         )
+                     );
+                    $s = $tableSolicitacoes->patchEntity($so, $request);
+                    $tableSolicitacoes->save($s);
+                    /* fim*/
+                    $this->Flash->success(__('The categoria has been saved.'));
+        }
+        
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The categoria could not be saved. Please, try again.'));
         }
+
+      
+
+
         $this->set(compact('categoria'));
         $this->set('_serialize', ['categoria']);
     }
@@ -99,9 +126,30 @@ class CategoriasController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $categoria = $this->Categorias->get($id);
+        $categoriaAtualiza = $this->Categorias->get($id);
         $categoria->flg_ativo = false;
         if ($this->Categorias->save($categoria)) {
+            //atualizando os documento que possuem essa categoria.
+               $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
+               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id]);
+       
+                foreach($solicitacao as $so){
+                 
+                    $request = array(
+                         'descricao' => $so['descricao'],
+                         'quantidade' => $so['quantidade'],
+                         'flg_ativo' => false,
+                         'categoria' => array(
+                             'id' =>  $categoriaAtualiza->id,
+                             'nome' => $categoriaAtualiza->nome 
+                         )
+                     );
+                    $s = $tableSolicitacoes->patchEntity($so, $request);
+                    $tableSolicitacoes->save($s);
+                    /* fim*/
+
             $this->Flash->success(__('The categoria has been deleted.'));
+        }
         } else {
             $this->Flash->error(__('The categoria could not be deleted. Please, try again.'));
         }
