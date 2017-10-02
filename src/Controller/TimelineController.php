@@ -13,10 +13,10 @@ class TimelineController extends AppController
     }
     public function index(){
 	  	$tableDoacoes = TypeRegistry::get('Doacoes');
-        $doacoes = $tableDoacoes->find()->where(['flg_ativo' => true]);
+        $doacoes = $tableDoacoes->find()->where(['flg_ativo' => true])->limit(10000);
 
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-        $solicitacoes = $tableSolicitacoes->find()->where(['flg_ativo' => true]);
+        $solicitacoes = $tableSolicitacoes->find()->where(['flg_ativo' => true])->limit(10000);
 
         $this->set(compact('solicitacoes','doacoes'));
         $this->set('_serialize', ['solicitacoes','doacoes']);

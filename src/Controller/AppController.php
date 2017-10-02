@@ -67,10 +67,10 @@ class AppController extends Controller
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $doacoes = $tableDoacoes->find();
      
-        $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
+        $doacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true])->limit(10000);
 
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-        $solicitacoes = $tableSolicitacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+        $solicitacoes = $tableSolicitacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true])->limit(10000);
 
         $result = from($doacoes)
         ->orderBy('$d ==> $d["descricao"]')
@@ -92,10 +92,10 @@ class AppController extends Controller
 
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
         $solicitacoes = $tableSolicitacoes->find();
-        $solicitacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true]);
+        $solicitacoes->where(['pessoa.id' => $usuario->pessoa->id,'flg_ativo' => true])->limit(10000);
 
         $tableDoacoes = TypeRegistry::get('Doacoes');
-        $doacoes = $tableDoacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true]);
+        $doacoes = $tableDoacoes->find()->where(['pessoa.id !=' => $usuario->pessoa->id,'flg_ativo' => true])->limit(10000);
        
        $result = from($solicitacoes)
        ->orderBy('$d ==> $d["descricao"]')
