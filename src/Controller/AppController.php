@@ -147,7 +147,8 @@ class AppController extends Controller
             TypeRegistry::get('Doacoes')->connection()->getIndex()->refresh();
             $resultDoacoes = $this->RealizaCombinacaoDoacao();
             $resultSolicitacoes = $this->RealizaCombinacaoSolicitacao();
-            $this->set(compact('resultDoacoes','resultSolicitacoes'));
+            $usuario = $this->GetUsuarioLogado();
+            $this->set(compact('resultDoacoes','resultSolicitacoes', 'usuario'));
             $this->set('_serialize', ['resultDoacoes','resultSolicitacoes']);
         }
 

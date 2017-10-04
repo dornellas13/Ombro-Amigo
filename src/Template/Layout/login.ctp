@@ -16,6 +16,7 @@
 
 
     <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('App/ombroamigoestilos.css') ?>
     <?= $this->Html->css('material-kit.css') ?>
 
 </head>
@@ -32,13 +33,10 @@
                     </button>
                     <a href="/">
                         <div class="logo-container">
-                            <div class="logo">
+                            <div class="logo image">
                                 <?= $this->Html->image('logo.png',array('alt' => 'Creative Tim Logo', 'title' => '<b>OMBRO-AMIGO</b><br /> Software social', 'data-placement' => 'bottom', 'data-html' => 'true', 'rel' => 'tooltip'))?>
                             </div>
-                            <div class="brand">
-                                Ombro Amigo
-                            </div>
-
+                         
 
                         </div>
                     </a>

@@ -25,17 +25,13 @@
            <?= $this->Form->input('password',['type' => 'password','class' => 'form-control', 'placeholder' => '*****','label' => false,'required' => true])?>
           
         </div>
-
-        <!-- If you want to add a checkbox to this form, uncomment this code
-
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="optionsCheckboxes" checked>
-            Subscribe to newsletter
-          </label>
-        </div> -->
       </div>
       <div class="footer text-center">
+        <span>Ainda não se registrou? <?= $this->Html->link('Registrar-se',['controller' => 'users', 'action' => 'add'], array('class' => '', 'data-toggle' => 'modal', 'style' => 'color: #8427a8')); ?></span>
+      </div>
+      
+      <div class="footer text-center">
+
         <button type="submit" class="btn btn-simple btn-primary btn-lg">ENTRAR</button>
       </div>
     

@@ -7,65 +7,10 @@
         echo $this->Html->script('App/sedes.js');
         echo $this->Html->css('demo.css');
 ?>
-
-<div class="box-container">
- <!-- Renderizar navbar -->
- <div class="box-left">
-
-   <nav class="navbar navbar-default">
-     <div class="container-fluid">
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar">
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         </button>
-         
-       </div>
-
-       <div class="collapse navbar-collapse" id="example-navbar">
-         <ul class="nav navbar-nav">
-           <li><a href="#">HOME</a></li>
-           <li><a href="#">PERFIL</a></li>
-           <li><a href="#">DOAR</a></li>
-           <li><a href="#">LISTA DE DOAÇÕES</a></li>
-           <li><a href="#">RELATÓRIOS</a></li>
-           <li><a href="#">LOGOUT</a></li>
-           <!-- <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-               <b class="caret"></b>
-             </a>
-               <ul class="dropdown-menu dropdown-menu-right">
-                 <li class="dropdown-header">Dropdown header</li>
-                 <li><a href="#">Action</a></li>
-                 <li><a href="#">Another action</a></li>
-                 <li><a href="#">Something else here</a></li>
-                 <li class="divider"></li>
-                 <li><a href="#">Separated link</a></li>
-                 <li class="divider"></li>
-                 <li><a href="#">One more separated link</a></li>
-               </ul>
-           </li> -->
-         </ul>
-       </div>
-     </div>
-   </nav> 
- </div>
-  <div class="box-right">
-    <div class="row">
-      <nav>
-        <div class="navbar navbar-primary">
-
-          <div class="navbar-brand">
-            
-            <p>Cadastro das sedes</p>
-
-          </div>
-          
-        </div>
-      </nav>
-    </div>
+<div class="box-right">
+    <div class="title">
+        <h2>Cadastrar Sede</h2>
+    </div> 
     <?= $this->Form->create($sede,['class' => 'col s12','id' => 'formSede']) ?>
       <div class="row">
 
@@ -149,5 +94,6 @@
     <?= $this->Form->end()?>
   </div>
 
-</div>
+
+
 

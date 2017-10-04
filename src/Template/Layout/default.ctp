@@ -74,13 +74,9 @@
                     </button>
                     <a href="/">
                         <div class="logo-container">
-                            <div class="">
+                            <div class="image">
                                 <?= $this->Html->image('logo.png',array('alt' => 'Creative Tim Logo', 'title' => '<b>OMBRO-AMIGO</b><br /> Software social', 'data-placement' => 'bottom', 'data-html' => 'true', 'rel' => 'tooltip'))?>
                             </div>
-                            <div class="brand">
-                                Ombro Amigo
-                            </div>
-
 
                         </div>
                     </a>
@@ -134,7 +130,11 @@
                             <div class="brand">
                                 <h1><B></B></h1>
                                 <h2>O que você tem para doar hoje?</h2>
-                                <button class="btn btn-primary btn-round btn-lg">FAZER DOAÇÃO</button>
+                                <?= $this->Html->link(
+                                     'FAZER DOAÇÃO',
+                                    ['controller' => 'users', 'action' => 'login'], array('class' => 'btn btn-primary btn-round btn-lg', 'data-toggle' => 'modal')
+                                ); ?>
+                            
                             </div>
                         </div>
                     </div>

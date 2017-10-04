@@ -61,20 +61,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/timeline">
-                <div class="logo-container">
+           
+            <div class="logo-container">
 
-                    <div class="">
-                        <img width="62px" src="/img/logo.png" alt="Creative Tim Logo" rel="tooltip" title="<b>OMBRO-AMIGO</b><br /> Software social" data-placement="bottom" data-html="true">
-
-                    </div>
-                   <!--  <div class="brand">
-                        Ombro Amigo
-                    </div> -->
-
-
+                <div class="image">
+                    <?= $this->Html->image('logo.png',array('alt' => 'Creative Tim Logo', 'title' => '<b>OMBRO-AMIGO</b><br /> Software social', 'data-placement' => 'bottom', 'data-html' => 'true', 'rel' => 'tooltip', 'url' => ['controller' => 'Timeline', 'action' => 'index']))?>
                 </div>
-            </a>
+
+            </div>
+            
         </div>
 
         <div class="collapse navbar-collapse" id="navigation-index">
@@ -141,31 +136,13 @@
                         <li><a href="#">Verificar Todas</a></li>
                     </ul>
                 </li>
-            
-               
+                
                 <li>
-                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'home','action' => 'index'],['escape' => false])?>
+                     <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'edit', $usuario['id']],['escape' => false])?>
                 </li>
                 <li>
                      <?=$this->Html->link('<i class="fa fa-sign-out"></i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
                 </li>
-
-
-                <!-- <li>
-                    <a rel="tooltip" title="Siga-nos no Twitter" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a rel="tooltip" title="Curta nossa página no Facebook" data-placement="bottom" href="#m" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-                        <i class="fa fa-facebook-square"></i>
-                    </a>
-                </li>
-                <li>
-                    <a rel="tooltip" title="Sina-nos no Instagram" data-placement="bottom" href="#" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                </li> -->
 
             </ul>
 
@@ -175,7 +152,7 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-    <div class="header admin header-filter" style="background-image: url(<?=$this->Url->image('bg3.jpeg')?>)">
+    <div class="header admin header-filter" style="background-image: url(<?=$this->Url->image('background-admin.jpg')?>)">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -206,24 +183,47 @@
 
                                 <div class="collapse navbar-collapse" id="example-navbar">
                                     <ul class="nav navbar-nav">
-                                        <li class="active"><a href="#">menu</a></li>
-                                        <li><a href="#">menu 2</a></li>
-                                        <li><a href="#">menu 3</a></li>
-                                        <li><a href="#">menu 4</a></li>
-                                        <li><a href="#">menu 5</a></li>
+
+                                        <li class="">
+                                            <?php echo $this->Html->link('Início',['controller' => 'Timeline', 'action' => 'index']); ?>
+                                        </li>
+                                        <li class="">
+                                            <?php echo $this->Html->link('Perfil',['controller' => 'Users', 'action' => 'edit', $usuario['id']]); ?>
+                                        </li>
                                         <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONJUNTO
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitações
                                                 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="#">item 2</a></li>
-                                                <li><a href="#">item 2</a></li>
-                                                <li><a href="#">item 3</a></li>
-                                                <li><a href="#">item 4</a></li>
-                                                <li><a href="#">item 5</a></li>
-                                                <li><a href="#">item 6</a></li>
-                                                <li><a href="#">item 7</a></li>
-                                                <li><a href="#">item 8</a></li>
+                                                <li><?php echo $this->Html->link('Solicitar',['controller' => 'Solicitacoes', 'action' => 'add']); ?></li>
+                                                <li><?php echo $this->Html->link('Visualizar',['controller' => 'Solicitacoes', 'action' => 'index', $usuario['id']]); ?></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doações
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><?php echo $this->Html->link('Doar',['controller' => 'Doacoes', 'action' => 'add']); ?></li>
+                                                <li><?php echo $this->Html->link('Visualizar',['controller' => 'Doacoes', 'action' => 'index', $usuario['id']]); ?></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><?php echo $this->Html->link('Cadastrar',['controller' => 'Categorias', 'action' => 'add']); ?></li>
+                                                <li><?php echo $this->Html->link('Visualizar',['controller' => 'Categorias', 'action' => 'index', $usuario['id']]); ?></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sedes
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><?php echo $this->Html->link('Cadastrar',['controller' => 'Sedes', 'action' => 'add']); ?></li>
+                                                <li><?php echo $this->Html->link('Visualizar',['controller' => 'Sedes', 'action' => 'index', $usuario['id']]); ?></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -232,9 +232,7 @@
                         </nav>
 
             <div class="container">
-                <div class="title">
-                    
-                </div>
+                
                 <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
 
@@ -1518,7 +1516,7 @@
             materialKit.initSliders();
             window_width = $(window).width();
 
-            if (window_width >= 992){
+            if (window_width >= 100){
                 big_image = $('.wrapper > .header');
 
                 $(window).on('scroll', materialKitDemo.checkScrollForParallax);

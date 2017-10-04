@@ -89,6 +89,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
