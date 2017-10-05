@@ -42,14 +42,6 @@
 </div>
 
 
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-    echo $this->Html->script('App/enderecos.js');
-    echo $this->Html->script('App/users.js');
-?>
-
 
 
 

@@ -144,7 +144,7 @@ class DoacoesController extends AppController
         $doacao = $this->Doacoes->get($id);
         $doacao->flg_ativo = false;
         if ($this->Doacoes->save($doacao)) {
-            $this->Flash->success(__('The doaco has been deleted.'));
+            $this->Flash->success(__('A doação foi excluida com sucesso'));
         } else {
             $this->Flash->error(__('The doaco could not be deleted. Please, try again.'));
         }

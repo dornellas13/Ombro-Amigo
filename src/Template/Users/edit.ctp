@@ -1,4 +1,4 @@
-
+  
 <div class="box-right">
     <div class="title">
         <h2>Perfil</h2>
@@ -77,7 +77,7 @@
       <div class="col-sm-4">
         <div class="form-group is-empty">
         <label>País</label>
-          <?=$this->Form->select('pessoa.endereco.cidade.estado.pais_id', null, ['class' => 'form-control browser-default validate','id' => 'select_pais','label' => false,'empty' => 'Selecione um país']);
+          <?=$this->Form->select('pessoa.endereco.cidade.estado.pais_id', $pais, ['class' => 'form-control browser-default validate','id' => 'select_pais','label' => false,'empty' => 'Selecione um país']);
           ?>
         <span class="material-input"></span></div>
       </div>
@@ -85,7 +85,7 @@
       <div class="col-sm-4">
         <div class="form-group is-empty">
           <label>Estado</label>
-          <?=$this->Form->select('pessoa.endereco.cidade.estado_id',null,['class' => 'form-control browser-default validate','id' => 'select_estado','disabled' => false,'empty' => 'Selecione um estado']);
+          <?=$this->Form->select('pessoa.endereco.cidade.estado_id',$estados,['class' => 'form-control browser-default validate','id' => 'select_estado','disabled' => false,'empty' => 'Selecione um estado']);
           ?>
         <span class="material-input"></span></div>
       </div>
@@ -93,7 +93,7 @@
       <div class="col-sm-4">
         <div class="form-group is-empty">
           <label>Cidade</label>
-           <?=$this->Form->select('pessoa.endereco.cidade_id', null, ['class' => ' form-control browser-default validate','id' => 'select_cidade','disabled' => false,'empty' => 'Selecione uma cidade']);
+           <?=$this->Form->select('pessoa.endereco.cidade_id', $cidades, ['class' => ' form-control browser-default validate','id' => 'select_cidade','disabled' => false,'empty' => 'Selecione uma cidade']);
           ?>
         <span class="material-input"></span></div>
       </div>

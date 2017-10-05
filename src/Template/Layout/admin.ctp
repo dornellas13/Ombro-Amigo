@@ -136,10 +136,10 @@
                         <li><a href="#">Verificar Todas</a></li>
                     </ul>
                 </li>
-                
+               <!--  
                 <li>
                      <?=$this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'users','action' => 'edit', $usuario['id']],['escape' => false])?>
-                </li>
+                </li> -->
                 <li>
                      <?=$this->Html->link('<i class="fa fa-sign-out"></i> Sair',['controller' => 'users','action' => 'logout'],['escape' => false])?>
                 </li>
@@ -178,17 +178,17 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" href="#">Painel - Administrativo</a>
+                                   
                                 </div>
 
-                                <div class="collapse navbar-collapse" id="example-navbar">
+                                <div class="collapse navbar-collapse" id="">
                                     <ul class="nav navbar-nav">
 
                                         <li class="">
-                                            <?php echo $this->Html->link('Início',['controller' => 'Timeline', 'action' => 'index']); ?>
+                                            <?php echo $this->Html->link('<i class="material-icons">home</i> Início',['controller' => 'Timeline', 'action' => 'index'],['escape' => false]); ?>
                                         </li>
-                                        <li class="">
-                                            <?php echo $this->Html->link('Perfil',['controller' => 'Users', 'action' => 'edit', $usuario['id']]); ?>
+                                        <!-- <li class="">
+                                            <?php echo $this->Html->link('<i class="material-icons">account_circle</i> Perfil',['controller' => 'Users', 'action' => 'edit', $usuario['id']],['escape' => false]); ?> -->
                                         </li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitações
@@ -1451,7 +1451,7 @@
     </div> -->
     <footer class="footer">
         <div class="container">
-            <nav class="pull-left">
+            <!-- <nav class="pull-left">
                 <ul>
                     <li>
                         <a href="#">
@@ -1474,8 +1474,8 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
-            <div class="copyright pull-right">
+            </nav> -->
+            <div class="copyright text-center">
                 &copy; 2017, OMBRO-AMIGO <i class="material-icons">favorite</i> Software Social.
             </div>
         </div>

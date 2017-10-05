@@ -31,8 +31,8 @@ class HomeController extends AppController
 	public function GetDadosGrafico(){
         $tableDoacoes = TypeRegistry::get('Doacoes');
         $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-        $doacoes = $tableDoacoes->find()->where(['flg_ativo' => true]);
-        $solicitacoes = $tableSolicitacoes->find()->where(['flg_ativo' => true]);
+        $doacoes = $tableDoacoes->find()->where(['flg_ativo' => true])->limit(10000);
+        $solicitacoes = $tableSolicitacoes->find()->where(['flg_ativo' => true])->limit(10000);
    		$valorMesesDoacoes = array(0,0,0,0,0,0,0,0,0,0,0,0);
         $valorMesesSolicitacoes = array(0,0,0,0,0,0,0,0,0,0,0,0);
 

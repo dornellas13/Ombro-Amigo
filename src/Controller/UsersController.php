@@ -67,16 +67,16 @@ class UsersController extends AppController
         
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user = $this->Users->patchEntity($user, $this->request->getData(),['associated' => ['Pessoas']]);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Bem vindo, obrigado por nos ajudar, para o seu primeiro acesso informe o email e a senha.'));
 
                 return $this->redirect(['action' => 'login']);
             }
-            $this->Flash->error(__('Bem vindo, obrigado por nos ajudar, para o seu primeiro acesso informe o email e a senha.'));
+            
         }
-        $pais = $this->Users->Pessoas->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
-        $this->set(compact('user', 'pais'));
+  
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 
@@ -90,22 +90,40 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $this->viewBuilder()->layout('admin');
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+      $associated = [
+            'Pessoas',
+            'Pessoas.Enderecos' => ['validate' => false],
+            'Pessoas.Enderecos.Cidades' => ['validate' => false],
+            'Pessoas.Enderecos.Cidades.Estados' => ['validate' => false],
+            'Pessoas.Enderecos.Cidades.Estados.Pais' => ['validate' => false]
+            ];
+
+        $user = $this->Users->get($id, [
+            'contain' => 'Pessoas'
+        ]);
+        
+        if ($this->request->is(['patch', 'post', 'put'])) {
+          
+            $user = $this->Users->patchEntity($user,$this->request->getData(),[
+                'associated' => $associated,
+            ]);
+
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Suas Informções foram gravadas com sucesso.'));
+            return $this->redirect($this->referer());
+
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Users->Pessoas->find('list', ['limit' => 200]);
-        $perfis = $this->Users->Perfis->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'pessoas', 'perfis'));
-        $this->set('_serialize', ['user']);
+        $pais = $this->Users->Pessoas->Enderecos->Cidades->Estados->Pais->find('list',['keyField' => 'id','valueField' => 'nome']);
+
+        $estados = $this->Users->Pessoas->Enderecos->Cidades->Estados->find('list',['keyField' => 'id','valueField' => 'nome']);
+
+        $cidades = $this->Users->Pessoas->Enderecos->Cidades->find('list',['keyField' => 'id','valueField' => 'nome']);
+
+        $this->set(compact('user', 'pais','estados','cidades'));
+        $this->set('_serialize', ['user','pais','cidades','estados']);
     }
 
     /**

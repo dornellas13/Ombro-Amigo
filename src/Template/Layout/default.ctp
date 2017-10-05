@@ -158,7 +158,7 @@
                 
             <footer class="footer">
                 <div class="container">
-                    <nav class="pull-left">
+                    <!-- <nav class="pull-left">
                         <ul>
                             <li>
                                 <a href="#">
@@ -181,8 +181,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </nav>
-                    <div class="copyright pull-right">
+                    </nav> -->
+                    <div class="copyright text-center">
                         &copy; 2017, OMBRO-AMIGO<i class="material-icons">favorite</i> Software Social.
                     </div>
                 </div>

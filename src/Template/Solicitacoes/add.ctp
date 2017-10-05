@@ -26,6 +26,8 @@
       <div class="col-sm-6">
         <div class="form-group is-empty">
            <?= $this->Form->select('categoria_id',$categorias,['class' => 'validate form-control','type' => 'text','empty' => 'Selecione uma categoria'])?>
+                  <?= $this->Form->control('nome_categoria',['type' => 'hidden']); ?>
+          <span class="material-input"></span></div>
         <span class="material-input"></span></div>
       </div>
     
@@ -38,15 +40,6 @@
  
   <?= $this->Form->end()?>
 </div>
-
-
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-    echo $this->Html->script('App/enderecos.js');
-    echo $this->Html->script('App/users.js');
-?>
 
 
 

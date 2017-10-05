@@ -82,7 +82,11 @@ class CategoriasController extends AppController
             if ($this->Categorias->save($categoria)) {
                 //atualizando os documento que possuem essa categoria.
                $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id]);
+               $tableDoacao = TypeRegistry::get('Doacoes');
+
+               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id])->limit(10000);
+
+               $doacao = $tableDoacao->find()->where(['categoria.id' => $id])->limit(10000);
        
                 foreach($solicitacao as $so){
                  
@@ -97,10 +101,25 @@ class CategoriasController extends AppController
                      );
                     $s = $tableSolicitacoes->patchEntity($so, $request);
                     $tableSolicitacoes->save($s);
+                   
+                }
+                foreach($doacao as $do){
+                 
+                    $request = array(
+                         'descricao' => $do['descricao'],
+                         'quantidade' => $do['quantidade'],
+                         'flg_ativo' => true,
+                         'categoria' => array(
+                             'id' =>  $categoria->id,
+                             'nome' => $categoria->nome 
+                         )
+                     );
+                    $s = $tableDoacao->patchEntity($do, $request);
+                    $tableDoacao->save($s);
                     /* fim*/
-                    $this->Flash->success(__('The categoria has been saved.'));
-        }
-        
+                   
+                }
+         $this->Flash->success(__('A categoria foi cadastrada com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The categoria could not be saved. Please, try again.'));
@@ -129,7 +148,9 @@ class CategoriasController extends AppController
         if ($this->Categorias->save($categoria)) {
             //atualizando os documento que possuem essa categoria.
                $tableSolicitacoes = TypeRegistry::get('Solicitacoes');
-               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id]);
+               $solicitacao  = $tableSolicitacoes->find()->where(['categoria.id' => $id])->limit(10000);
+                $tableDoacao = TypeRegistry::get('Doacoes');
+                $doacao = $tableDoacao->find()->where(['categoria.id' => $id])->limit(10000);
        
                 foreach($solicitacao as $so){
                  
@@ -144,10 +165,26 @@ class CategoriasController extends AppController
                      );
                     $s = $tableSolicitacoes->patchEntity($so, $request);
                     $tableSolicitacoes->save($s);
+                }
+                foreach($doacao as $do){
+                 
+                    $request = array(
+                         'descricao' => $do['descricao'],
+                         'quantidade' => $do['quantidade'],
+                         'flg_ativo' => false,
+                         'categoria' => array(
+                             'id' =>  $categoria->id,
+                             'nome' => $categoria->nome 
+                         )
+                     );
+                    $s = $tableDoacao->patchEntity($do, $request);
+                    $tableDoacao->save($s);
                     /* fim*/
-
-            $this->Flash->success(__('The categoria has been deleted.'));
-        }
+                   
+                }
+                    /* fim*/
+                $this->Flash->success(__('A categoria foi excluida com sucesso.'));
+        
 
         } else {
             $this->Flash->error(__('The categoria could not be deleted. Please, try again.'));

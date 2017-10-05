@@ -63,6 +63,7 @@ class SolicitacoesController extends AppController
         $solicitacao = $this->Solicitacoes->newEntity();
         if ($this->request->is('post')) {
             $response = $this->request->getData();
+     
             $usuario = $this->GetUsuarioLogado();
             $request = array(
                 'descricao' => $response['descricao'],
