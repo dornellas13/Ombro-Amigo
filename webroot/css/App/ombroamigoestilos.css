@@ -14,3 +14,57 @@
 
 	width: 60% !important;
 }
+
+.padding-left-10{
+
+    padding-left: 10px !important;
+}
+
+.dropdown-menu .divider {
+  margin: 5px 0 0 0 !important;
+}
+
+h6{
+    font-size: 0.8em;
+    line-height: 0.5em;
+}
+
+.card-custom {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    border-radius: 3px;
+    color: rgba(0,0,0, 0.87);
+}
+
+.dropdown-menu li > a {
+  font-size: 13px;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 2px;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  transition: all 150ms linear;
+
+}
+.dropdown-menu li > a:hover{
+    color: #FFFFFF !important;;
+    background-color: #ebc8f1;
+}
+
+.dropdown-menu li > a:hover .card-custom{
+color: #fff !important;
+
+}
+
+.card-custom .card-icon {
+    float: left !important;
+    height: 60% !important;
+    width: 20% !important;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+}
+

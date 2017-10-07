@@ -6,12 +6,12 @@
 
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <h2 class="text-center title">Conheça nosso trabalho</h2>
-            <h4 class="text-center description">Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.</h4>
+            <h4 class="text-center description">O objetivo do trabalho é desenvolver uma aplicação web que auxilie pessoas carentes e entidades filantrópicas a encontrar possíveis doadores que contribuam na arrecadação dos mais variados produtos para suprirem suas necessidades. A principal função da aplicação é disponibilizar para o usuário a combinação entre os produtos doados e os requisitados. Em vista disso, para aperfeiçoar essa combinação será utilizado um motor de busca chamado Apache Lucene de modo que ele realize a indexação dos dados requisitados, tornando a busca por uma determinada palavra mais eficiente e consequentemente facilitando a recuperação das informações desejadas. Com isso além da facilidade de acesso aos dados, também tornará o sistema muito mais fluido e responsivo ao usuário, fazendo com que a utilização do mesmo retorne uma experiência que demonstre a rapidez e eficácia do motor de busca.</h4>
         </div>
     </div>
-
+<!-- 
     <div class="row">
         <div class="col-md-4">
             <div class="info">
@@ -40,7 +40,7 @@
                 <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 

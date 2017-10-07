@@ -86,23 +86,26 @@
                             foreach ($resultDoacoes['Combinacoes'] as $result) {
                         ?>
                             <li class="dropdown-content">
-                                <label>
-                                    <small>
-                                        Descrição:  <?=$result->descricao?>
-                                        <br>
-                                        Solicitante: <?=$result->pessoa['nome']?>
-                                        <br>
-                                        Categoria: <?=$result->categoria['nome']?>
-                                    </small>     
-                                </label>
+                                <a href="#">
+                                <div class="card-custom horizontal">
+                                  <div class="card-stacked">
+                                    <div class="card-icon">
+                                        <i class="fa fa-handshake-o fa-2x"></i>
+                                    </div>
+                                    <div class="card-action">
+                                        <h6 class="padding-left-10"><b> Nome:</b> <?=$result->pessoa['nome']?></h6>
+                                        <h6 class="padding-left-10"><b> Descricao:</b> <?=$result->descricao?></h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                </a>
                             </li>
+                            <li class="divider"></li>
                             
                         <?php
                             }
                         ?>
-                    
-                        <li class="divider"></li>
-                        <li><a href="#">Verificar Todas</a></li>
+            
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -117,23 +120,25 @@
                             foreach ($resultSolicitacoes['Combinacoes'] as $result) {
                         ?>
                             <li class="dropdown-content">
-                                <label>
-                                    <small>
-                                        Descrição:  <?=$result->descricao?>
-                                        <br>
-                                        doador: <?=$result->pessoa['nome']?>
-                                        <br>
-                                        Categoria: <?=$result->categoria['nome']?>
-                                    </small>     
-                                </label>
+                                <a href="#">
+                                <div class="card-custom horizontal">
+                                  <div class="card-stacked">
+                                    <div class="card-icon">
+                                        <i class="fa fa-handshake-o fa-2x"></i>
+                                    </div>
+                                    <div class="card-action">
+                                        <h6 class="padding-left-10"><b> Nome:</b> <?=$result->pessoa['nome']?></h6>
+                                        <h6 class="padding-left-10"><b> Descricao:</b> <?=$result->descricao?></h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                </a>
                             </li>
+                            <li class="divider"></li>
                             
                         <?php
                             }
                         ?>
-                    
-                        <li class="divider"></li>
-                        <li><a href="#">Verificar Todas</a></li>
                     </ul>
                 </li>
                <!--  
