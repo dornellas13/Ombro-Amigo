@@ -79,7 +79,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
+        $rules->add($rules->isUnique(['username'],['message' => 'Email já encontra-se em uso']));
         $rules->add($rules->existsIn(['pessoa_id'], 'Pessoas'));
         $rules->add($rules->existsIn(['perfil_id'], 'Perfis'));
 

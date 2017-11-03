@@ -72,6 +72,8 @@ class UsersController extends AppController
                 $this->Flash->success(__('Bem vindo, obrigado por nos ajudar, para o seu primeiro acesso informe o email e a senha.'));
 
                 return $this->redirect(['action' => 'login']);
+            }else{
+                $this->Flash->error("Email já encontra-se em uso");
             }
             
         }
@@ -147,7 +149,9 @@ class UsersController extends AppController
     }
 
     public function login(){
-
+        if(!is_null($this->Auth->user('id'))){
+                return $this->redirect($this->Auth->redirectUrl());
+        }
         $this->viewBuilder()->layout('login');
 
         if ($this->request->is('post')) {

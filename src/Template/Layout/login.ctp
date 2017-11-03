@@ -97,9 +97,7 @@
 		<div class="header header-filter" style="background-image: url(<?=$this->Url->image('bg11.jpg')?>); background-size: cover; background-position: top center;">
 			<div class="container">
 				<div class="row">
-
-                    <?= $this->fetch('content') ?>
-					
+                    <?= $this->fetch('content') ?>	
 				</div>
 			</div>
 

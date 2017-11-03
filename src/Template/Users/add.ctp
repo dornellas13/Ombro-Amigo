@@ -9,6 +9,7 @@
       <div class="header header-primary text-center">
         <h4>CADASTRO</h4>
       </div>
+      <?= $this->Flash->render() ?>
       <p class="text-divider">Bem vindo ao time.</p>
       <div class="content">
 
